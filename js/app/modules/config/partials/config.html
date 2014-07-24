@@ -1,0 +1,39 @@
+<div id="cfg-tpl">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Set Gender</h3>
+        </div>
+    </div>
+    <div class="row" id="config-panel">
+        <div class="col-md-12">
+            <table class="table">
+                <tr>
+                    <td>Male</td>
+                    <td><input type="radio" ng-model="gender" name="gender" ng-change="genderChanged(gender)" value="male" checked="checked"></td>
+                </tr>
+                <tr>
+                    <td>Female</td>
+                    <td><input type="radio" name="gender" ng-model="gender" ng-change="genderChanged(gender)" value="female"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Set Model</h3>
+        </div>
+    </div>
+    <div class="row" id="config-panel">
+        <div class="col-md-12">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                Model <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Guattugno</a></li>
+                    <li><a href="#">Other</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

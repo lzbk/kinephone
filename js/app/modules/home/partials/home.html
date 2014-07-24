@@ -1,0 +1,118 @@
+<div id="home-tpl">
+    <!-- MAIN PANEL (IMAGE + OPTIONS) -->
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gender <span class="caret"></span></a>
+                                <ul class="dropdown-menu dropdown-menu-form"  role="menu">                                    
+                                    <li>
+                                        <label class="checkbox">
+                                            <input type="radio" ng-model="gender" name="gender" ng-change="genderChanged(gender)" value="male" checked="checked"> 
+                                            Male
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="checkbox">
+                                            <input type="radio" ng-model="gender" name="gender" ng-change="genderChanged(gender)" value="female" checked="checked"> 
+                                            Female
+                                        </label>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Model <span class="caret"></span></a>
+                                <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                                    <li>
+                                        <label class="checkbox">
+                                            <input type="radio" ng-model="model" name="model" ng-change="modelChanged(model)" value="gattegno"> 
+                                            Gattegno
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="checkbox">
+                                            <input type="radio" ng-model="model" name="model" ng-change="modelChanged(model)" value="model2"> 
+                                            Model 2
+                                        </label>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+            <div class="panel-body text-center">
+                <img id="big-image" ng-src="{{bigImageUrl}}" usemap="#map" >
+                <map id="big-image-map" name="map">
+                <area shape="rect" ng-repeat="coord in bigImageMap" id="{{$index + 1}}" href="javascript:void(0);" ng-click="showDetails($event)" coords="{{coord}}"/>
+                </map>
+            </div>
+        </div>
+        <div id="api-image" class="col-md-12 text-center" >
+
+        </div>
+    </div>
+    <!-- RIGHT PANEL -->
+    <div id="right-panel">
+        <div id="details-container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="btn glyphicon glyphicon-off" ng-click="toggleRightPanel()"> </span> Détails
+                </div>
+            </div>
+            <hr/>
+            <!-- images row -->
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <div class="detail-img-container">
+                        <img id="img-1" ng-src="{{item.symbol}}">
+                    </div>
+                </div>
+                <div class="col-md-6 text-center">
+                    <div class="detail-img-container">
+                        <img id="img-2" ng-src="{{item.image}}">
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <!-- sound row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <audio id="player1" ng-if="gender == 'male'" ng-src="{{item.soundShortMale}}" type="audio/mp3"></audio>
+                                <audio id="player1" ng-if="gender == 'female'" ng-src="{{item.soundShortFemale}}" type="audio/mp3"></audio>
+                                <button class="glyphicon glyphicon-play" ng-click="play1()"></button>
+                            </td>
+                            <td>Wovel sound</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio id="player2" ng-if="gender == 'male'" ng-src="{{item.soundLongMale}}" type="audio/mp3"></audio>
+                                <audio id="player2" ng-if="gender == 'female'" ng-src="{{item.soundLongFemale}}" type="audio/mp3"></audio>
+                                <button class="glyphicon glyphicon-play" ng-click="play2()"></button>
+                            </td>
+                            <td>Sound in context</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <hr/>
+            <!-- description row 1 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h5>Short description</h5>
+                    <p>
+                    {{item.descriptionShort}}
+                    </p>
+                    <h5>Long description</h5>
+                    <p>
+                    {{item.descriptionLong}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
