@@ -47,6 +47,15 @@
                 <map id="big-image-map" name="map">
                 <area shape="rect" ng-repeat="coord in bigImageMap" id="{{$index + 1}}" href="javascript:void(0);" ng-click="showDetails($event)" coords="{{coord}}"/>
                 </map>
+                 <!--<img id="big-image" src="medias/uk/gattegno-img-1.png">
+               <div ng-model="item" ng-repeat="elem in item.items" ng-click="showDetails(elem)" ng-style="{
+                        'width': parseInt(elem.coordonnees.split(',')[2]) - parseInt(elem.coordonnees.split(',')[0] + 'px', 
+                        'height': parseInt(elem.coordonnees.split(',')[3]) - parseInt(elem.coordonnees.split(',')[1]) + 'px',
+                        'top' : top + parseInt(elem.coordonnees.split(',')[1]),
+                        'left' : left + elem.coordonnees.split(',')[0],
+                        'background-color:red'}">           
+                </div> -->
+               
             </div>
         </div>
         <div id="api-image" class="col-md-12 text-center" >

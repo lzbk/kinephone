@@ -6,11 +6,10 @@ var homeApp = angular.module('homeApp', []);
 homeApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider
-        .when('/home', {
+        .when('/home/:langue/:methode?/:genre?', {
             templateUrl: 'js/app/modules/home/partials/home.html',
             controller: 'HomeCtrl'
         });
     }
 ]);
 
-//homeApp.controller('HomeCtrl', HomeCtrl);

@@ -3,7 +3,7 @@
  *
  * @param {type} $scope scope
  */
-function HomeCtrl($scope, $modal, $filter, UtilsFactory, MainFactory) {
+function HomeCtrl($scope, $http, $routeParams, MainFactory) {
     $scope.title = 'Home';
     $scope.panelVisible = false;
     $scope.currentId = 0;
@@ -11,20 +11,63 @@ function HomeCtrl($scope, $modal, $filter, UtilsFactory, MainFactory) {
     $scope.bigImageUrl = '';
     $scope.bigImageMap = []; 
     $scope.item = {}; // current item
+    $scope.currentDetail = null;
 
-    $scope.gender = 'male';
-    $scope.model = 'gattegno';
-
+    
+    // get url params
+    // methode
+    if(!$routeParams.methode){
+        $scope.methode = 'gattegno';
+    }
+    else{
+        $scope.methode = $routeParams.methode;
+    }
+    // language
+    if($routeParams.langue){
+        $scope.langue = 'uk';
+    }
+    else{
+        $scope.langue = $routeParams.langue;
+    }
+    // gender
+    if(!$routeParams.genre){
+        $scope.genre = 'male';
+    }
+    else{
+        $scope.genre = $routeParams.genre;
+    }
 
     $scope.init = function() {
-        $('img[usemap]').rwdImageMaps();
-        $('#right-panel').hide();
-        $('#config-panel').hide();
+        
+
+        // draw a layer over the background image
+       
+        // get background image position
+       /* $scope.top = $('#big-image').position().top;
+        $scope.left = $('#big-image').position().left;
+        for(var index in $scope.item.items){
+            // split coords values (left, top, right, bottom)
+            var coordsArray = $scope.item.items[index].coordonnees.split(',');
+            var top = $scope.top + parseInt(coordsArray[1]);
+            var left = $scope.left + parseInt(coordsArray[0]);
+            var width = parseInt(coordsArray[2]) - parseInt(coordsArray[0]);
+            var height = parseInt(coordsArray[3]) - parseInt(coordsArray[1]);
+            $scope.currentDetail = $scope.item.items[index];
+
+            var html = '<div  ng-click="showDetails("test")" style="cursor:pointer;background-color:blue;position:absolute;width:'+width+'px; height:'+height+'px;top: '+top+'px; left:'+left+'px;">';
+            html += '</div>';
+            $('.panel-body').append(html);
+        }*/
+
+        
+        $('img[usemap]').rwdImageMaps();  
+        $('#right-panel').hide();      
         // todo get position width and height to be able to draw a interactive layer
         console.log($('img[usemap]').position());
         var top = $('img[usemap]').position().top;
         var left = $('img[usemap]').position().left;
-        for(var index in $scope.bigImageMap){
+        // not done yet but will change with new get data method 
+        /*for(var index in $scope.bigImageMap){
             // split values 0 -> 3
 
             // calculate top, left, width, height
@@ -32,14 +75,22 @@ function HomeCtrl($scope, $modal, $filter, UtilsFactory, MainFactory) {
             // draw html item with right values
 
             // events on item
-        }
+        }*/
         // what if the window is resized ?
     };
 
     angular.element(document).ready(function() {
         // get all datas for the current "language table" and symbologic type (Gattegno Vs Dan Vs ...)
-        getAllDatas('uk', $scope.model); 
-        $scope.init();    
+        /*var url = 'elements/' + $scope.langue + '/' + $scope.methode + '/datas.json';
+        console.log(url);
+        $http.get(url).success(function(data) {
+          $scope.item = data;
+          console.log($scope.item);
+          $scope.init(); 
+        });*/
+        getAllDatas($scope.langue, $scope.methode); 
+        $scope.init(); 
+           
     });
     
     $scope.toggleRightPanel = function() {
@@ -61,6 +112,12 @@ function HomeCtrl($scope, $modal, $filter, UtilsFactory, MainFactory) {
         $scope.currentId = id;
     }
 
+
+   /* $scope.showDetails = function(elem) {
+        console.log('elem');
+        
+    }
+*/
     $scope.play1 = function(){
         $('#player1').get(0).play();
     }
@@ -70,17 +127,17 @@ function HomeCtrl($scope, $modal, $filter, UtilsFactory, MainFactory) {
     }
 
     $scope.genderChanged = function(value){
-        $scope.gender = value || 'male';
+        $scope.genre = value || 'male';
     }
 
     $scope.modelChanged = function(value){
-        $scope.model = value || 'gattegno';
+        $scope.methode = value || 'gattegno';
     }
 
-    // get datas for a given language and model
-    function getAllDatas(language, model) {
+    // get datas for a given language and method
+    function getAllDatas(language, method) {
 
-        if (language == 'uk' && model == 'gattegno') {
+        if (language == 'uk' && method == 'gattegno') {
             //$('map').empty();
             $scope.bigImageUrl = 'medias/uk/gattegno-img-1.png';
 

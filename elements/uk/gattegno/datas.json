@@ -1,0 +1,201 @@
+{
+    "langue_id": 1,    
+    "code_iso" : "uk",
+    "code_unicode":"658",
+    "methode_id": 1,
+    "nom": "gattegno",
+    "items":[
+        {
+            "id":1,
+            "coordonnees":"59,28,125,57",
+            "sounds":[
+                {
+                    "id":1,
+                    "type":"phonem",
+                    "url":"medias/uk/vowels/1_dog/Open_back_rounded_vowel_male.mp3",
+                    "gender":"male",
+                    "visible": true
+                },
+                {
+                    "id":2,
+                    "type":"phonem",
+                    "url":"medias/uk/vowels/1_dog/Open_back_rounded_vowel_female.mp3",
+                    "gender":"female",
+                    "visible": true
+                },
+                {
+                    "id":3,
+                    "type":"word",
+                    "url":"medias/uk/vowels/1_dog/dog_male.mp3",
+                    "gender":"male",
+                    "visible": true
+                },
+                {
+                    "id":4,
+                    "type":"word",
+                    "url":"medias/uk/vowels/1_dog/dog_female.mp3",
+                    "gender":"female",
+                    "visible": true
+                }
+
+            ], 
+            "images":[
+                {
+                    "id":1,
+                    "type":"couleur",
+                    "url":"medias/uk/vowels/1_dog/symbol.png",                    
+                    "visible": true 
+                },
+                {
+                    "id":2,
+                    "type":"symbol",
+                    "url":"medias/uk/vowels/1_dog/dog.jpg",                    
+                    "visible": true 
+                }
+
+            ], 
+            "textes":[
+                {
+                    "id": 1,
+                    "type" : "word",
+                    "text" : "dog",
+                    "visible" : true
+                },
+                {
+                    "id": 2,
+                    "type" : "phonem",
+                    "text" : "dɒɡ",
+                    "visible" : true
+                }
+
+            ]
+
+        }, 
+        {
+            "id":2,
+            "coordonnees":"150,28,216,55",
+            "sounds":[
+                {
+                    "id":5,
+                    "type":"phonem",
+                    "url":"medias/uk/vowels/2_cat/Near-open_front_unrounded_vowel_male.mp3",
+                    "gender":"male",
+                    "visible": true
+                },
+                {
+                    "id":6,
+                    "type":"phonem",
+                    "url":"medias/uk/vowels/2_cat/Near-open_front_unrounded_vowel_female.mp3",
+                    "gender":"female",
+                    "visible": true
+                },
+                {
+                    "id":7,
+                    "type":"word",
+                    "url":"medias/uk/vowels/2_cat/cat_male.mp3",
+                    "gender":"male",
+                    "visible": true
+                },
+                {
+                    "id":8,
+                    "type":"word",
+                    "url":"medias/uk/vowels/2_cat/cat_female.mp3",
+                    "gender":"female",
+                    "visible": true
+                }
+
+            ], 
+            "images":[
+                {
+                    "id":3,
+                    "type":"couleur",
+                    "url":"medias/uk/vowels/2_cat/symbol.png",                    
+                    "visible": true 
+                },
+                {
+                    "id":4,
+                    "type":"symbol",
+                    "url":"medias/uk/vowels/2_cat/cat.jpg",                    
+                    "visible": true 
+                }
+            ],
+            "textes":[
+                {
+                    "id": 3,
+                    "type" : "word",
+                    "text" : "cat",
+                    "visible" : true
+                },
+                {
+                    "id": 4,
+                    "type" : "phonem",
+                    "text" : "kæt",
+                    "visible" : true
+                }
+            ]
+        }, 
+        {
+            "id":3,
+            "coordonnees":"242,27,306,55",
+            "sounds":[
+                {
+                    "id":9,
+                    "type":"phonem",
+                    "url":"medias/uk/vowels/3_bed/Open-mid_front_unrounded_vowel_male.mp3",
+                    "gender":"male",
+                    "visible": true
+                },
+                {
+                    "id":10,
+                    "type":"phonem",
+                    "url":"medias/uk/vowels/3_bed/Open-mid_front_unrounded_vowel_female.mp3",
+                    "gender":"female",
+                    "visible": true
+                },
+                {
+                    "id":11,
+                    "type":"word",
+                    "url":"medias/uk/vowels/3_bed/bed_male.mp3",
+                    "gender":"male",
+                    "visible": true
+                },
+                {
+                    "id":12,
+                    "type":"word",
+                    "url":"medias/uk/vowels/3_bed/bed_female.mp3",
+                    "gender":"female",
+                    "visible": true
+                }
+
+            ], 
+            "images":[
+                {
+                    "id":5,
+                    "type":"couleur",
+                    "url":"medias/uk/vowels/3_bed/symbol.png",                    
+                    "visible": true 
+                },
+                {
+                    "id":6,
+                    "type":"symbol",
+                    "url":"medias/uk/vowels/3_bed/bed.jpeg",                    
+                    "visible": true 
+                }
+            ],
+            "textes":[
+                {
+                    "id": 5,
+                    "type" : "word",
+                    "text" : "bed",
+                    "visible" : true
+                },
+                {
+                    "id": 6,
+                    "type" : "phonem",
+                    "text" : "bed",
+                    "visible" : true
+                }
+            ]
+        }
+    ]
+}

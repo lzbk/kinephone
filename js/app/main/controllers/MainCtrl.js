@@ -6,15 +6,6 @@
  */
 function MainCtrl($scope, $location, MainFactory) {
 
-    // connected user
-    /*$scope.user =
-            {
-                'id': '150062f4-2493-4b6c-8a94-7cdea51c248e',
-                'name': 'Pitrack',
-                'teacher': true
-            };*/
-
-
     angular.element(document).ready(function() {
 
     	// set gender with default value
