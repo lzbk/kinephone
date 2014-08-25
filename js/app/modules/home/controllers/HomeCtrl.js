@@ -121,7 +121,7 @@ function HomeCtrl($scope, $http, $routeParams, MainFactory) {
     $scope.play1 = function(){
         var audio = document.getElementById('player1');
         // this line make it work on iOS
-        //audio.load();
+        audio.load();
         audio.play();
         //$('#player1').get(0).play();
     }
