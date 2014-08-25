@@ -91,7 +91,7 @@
                     <table class="table">
                         <tr>
                             <td>
-                                <audio id="player1" ng-if="gender == 'male'" ng-src="{{item.soundShortMale}}" type="audio/mp3" controls preload="auto"></audio>
+                                <audio id="player1" ng-if="gender == 'male'" ng-src="{{item.soundShortMale}}" type="audio/mp3" controls></audio>
                                 <audio id="player1" ng-if="gender == 'female'" ng-src="{{item.soundShortFemale}}" type="audio/mp3" controls preload="auto"></audio>
                                 <button class="glyphicon glyphicon-play" ng-click="play1()"></button>
                             </td>
@@ -99,8 +99,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <audio id="player2" ng-if="gender == 'male'" ng-src="{{item.soundLongMale}}" type="audio/mp3" preload="auto"></audio>
-                                <audio id="player2" ng-if="gender == 'female'" ng-src="{{item.soundLongFemale}}" type="audio/mp3" preload="auto"></audio>
+                                <audio id="player2" ng-if="gender == 'male'" ng-src="{{item.soundLongMale}}" type="audio/mp3" controls preload="auto"></audio>
+                                <audio id="player2" ng-if="gender == 'female'" ng-src="{{item.soundLongFemale}}" type="audio/mp3" controls preload="auto"></audio>
                                 <button class="glyphicon glyphicon-play" ng-click="play2()"></button>
                             </td>
                             <td>Sound in context</td>
