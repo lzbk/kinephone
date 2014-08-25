@@ -7,7 +7,8 @@ var mainApp = angular.module(
         'ngRoute',
         'ngAnimate',
         'ui.bootstrap', 
-        'ui.bootstrap.progressbar',         
+        'ui.bootstrap.progressbar',
+        'ngTouch',  
         'homeApp'    
     ]);
 
