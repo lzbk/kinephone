@@ -119,12 +119,12 @@ function HomeCtrl($scope, $http, $routeParams, MainFactory) {
     }
 */
     $scope.play1 = function(){
-        var audio = document.getElementById('player1');
+       /* var audio = document.getElementById('player1');
         // this line make it work on iOS
         audio.load();
-        audio.play();
-        /*$('#player1').get(0).load();
-        $('#player1').get(0).play();*/
+        audio.play();*/
+        $('#player1').get(0).load();
+        $('#player1').get(0).play();
     }
 
     $scope.play2 = function(){
@@ -132,6 +132,7 @@ function HomeCtrl($scope, $http, $routeParams, MainFactory) {
         // this line make it work on iOS
         //audio.load();
         //audio.play();
+        $('#player2').get(0).load();
         $('#player2').get(0).play();
     }
 
