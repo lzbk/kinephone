@@ -75,15 +75,16 @@ img[usemap] {
     width: auto;
 
 }
-
+/*
 @variables heights {
   header: 55px;
 }
 
+
 .hidden{
     visibility: collapse;
 }
-
+*/
 
 #right-panel{
     position: fixed;

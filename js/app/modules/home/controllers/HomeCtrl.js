@@ -119,9 +119,10 @@ function HomeCtrl($scope, $http, $routeParams, MainFactory) {
     }
 */
     $scope.play1 = function(){
-        alert('yep');
         var audio = document.getElementById('player1');
+        audio.load();
         audio.play();
+
 
         //$('#player1').get(0).play();
     }
