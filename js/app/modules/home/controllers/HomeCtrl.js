@@ -119,7 +119,10 @@ function HomeCtrl($scope, $http, $routeParams, MainFactory) {
     }
 */
     $scope.play1 = function(){
-        $('#player1').get(0).play();
+        var audio = document.getElementById('player1');
+        audio.play();
+
+        //$('#player1').get(0).play();
     }
 
     $scope.play2 = function(){
