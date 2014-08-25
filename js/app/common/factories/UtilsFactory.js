@@ -67,47 +67,7 @@ function UtilsFactory($modal) {
             };
             request.open('POST', url);
             request.send(data);
-        }/*,
-        xhr2: function(url, data, callback) {
-            var request = new XMLHttpRequest();
-            var progress = '';
-            progress += '<div class="modal" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">';
-            progress += '<div class="modal-dialog">';
-            progress += '<div class="modal-content">';
-            progress += '   <div class="modal-header">';
-            progress += '       <h1>Processing...</h1>';
-            progress += '   </div>';
-            progress += '   <div class="modal-body">';
-            progress += '       <div class="progress progress-striped">';
-            progress += '           <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">';
-            progress += '           </div>';
-            progress += '       </div>';
-            progress += '   </div>';
-            progress += '</div>';
-            progress += '   </div>';
-            progress += '</div>';
-            $('body').append(progress);
-
-
-            request.onreadystatechange = function() {
-                if (request.readyState === 4 && request.status === 200) {
-                    var response = JSON.parse(request.responseText);
-                    callback(response);
-                    $('.progress-bar').css('width', '0%');
-                    $('#pleaseWaitDialog').modal('hide');
-                }
-            };
-            // open modal progress window
-            $('#pleaseWaitDialog').modal();
-            request.upload.onprogress = function(e) {
-
-                if (e.lengthComputable) {
-                    $('.progress-bar').css('width', ((e.loaded / e.total) * 100) + '%');
-                }
-            };
-            request.open('POST', url);
-            request.send(data);
-        }*/
+        }
     };
 
 }

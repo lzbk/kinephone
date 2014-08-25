@@ -30,11 +30,11 @@ function HomeCtrl($scope, $http, $routeParams, MainFactory) {
         $scope.langue = $routeParams.langue;
     }
     // gender
-    if(!$routeParams.genre){
-        $scope.genre = 'male';
+    if(!$routeParams.gender){
+        $scope.gender = 'male';
     }
     else{
-        $scope.genre = $routeParams.genre;
+        $scope.gender = $routeParams.gender;
     }
 
     $scope.init = function() {
@@ -63,7 +63,7 @@ function HomeCtrl($scope, $http, $routeParams, MainFactory) {
         $('img[usemap]').rwdImageMaps();  
         $('#right-panel').hide();      
         // todo get position width and height to be able to draw a interactive layer
-        console.log($('img[usemap]').position());
+        // console.log($('img[usemap]').position());
         var top = $('img[usemap]').position().top;
         var left = $('img[usemap]').position().left;
         // not done yet but will change with new get data method 
@@ -127,7 +127,7 @@ function HomeCtrl($scope, $http, $routeParams, MainFactory) {
     }
 
     $scope.genderChanged = function(value){
-        $scope.genre = value || 'male';
+        $scope.gender = value || 'male';
     }
 
     $scope.modelChanged = function(value){
