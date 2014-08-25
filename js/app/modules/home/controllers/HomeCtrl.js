@@ -120,15 +120,18 @@ function HomeCtrl($scope, $http, $routeParams, MainFactory) {
 */
     $scope.play1 = function(){
         var audio = document.getElementById('player1');
+        // this line make it work on iOS
         audio.load();
         audio.play();
-
-
         //$('#player1').get(0).play();
     }
 
     $scope.play2 = function(){
-        $('#player2').get(0).play();
+        var audio = document.getElementById('player2');
+        // this line make it work on iOS
+        audio.load();
+        audio.play();
+        //$('#player2').get(0).play();
     }
 
     $scope.genderChanged = function(value){
