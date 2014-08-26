@@ -43,9 +43,15 @@
                     </div>
             </div>
             <div class="panel-body text-center">
+                <!--
                 <img id="big-image" ng-src="{{bigImageUrl}}" usemap="#map" >
                 <map id="big-image-map" name="map">
                 <area shape="rect" ng-repeat="coord in bigImageMap" id="{{$index + 1}}" href="javascript:void(0);" ng-click="showDetails($event)" coords="{{coord}}"/>
+                </map>
+                -->
+                <img id="big-image" ng-src="{{datas.image}}" usemap="#map" >
+                <map id="big-image-map" name="map">
+                <area shape="rect" ng-repeat="item in datas.items" id="{{item.id}}" href="javascript:void(0);" ng-click="showDetails($event)" coords="{{item.coordonnees}}"/>
                 </map>
                  <!--<img id="big-image" src="medias/uk/gattegno-img-1.png">
                <div ng-model="item" ng-repeat="elem in item.items" ng-click="showDetails(elem)" ng-style="{
@@ -75,12 +81,14 @@
             <div class="row">
                 <div class="col-md-6 text-center">
                     <div class="detail-img-container">
-                        <img id="img-1" ng-src="{{item.symbol}}">
+                       <!-- <img id="img-1" ng-src="{{item.symbol}}"> -->
+                        <img id="img-1" ng-src="{{details.images[0].url}}">
                     </div>
                 </div>
                 <div class="col-md-6 text-center">
                     <div class="detail-img-container">
-                        <img id="img-2" ng-src="{{item.image}}">
+                        <!--<img id="img-2" ng-src="{{item.image}}">-->
+                        <img id="img-1" ng-src="{{details.images[1].url}}">
                     </div>
                 </div>
             </div>
@@ -92,16 +100,24 @@
                         <tr>
                             <td>
                                 <!-- if no controls are set, audio player will not show -->
+                                <!--
                                 <audio id="player1" ng-if="gender == 'male'" ng-src="{{item.soundShortMale}}" type="audio/mpeg"></audio>
                                 <audio id="player1" ng-if="gender == 'female'" ng-src="{{item.soundShortFemale}}" type="audio/mpeg"></audio>
+                                -->
+                                <audio id="player1" ng-if="gender == 'male'" ng-src="{{details.sounds[0].url}}" type="audio/mpeg"></audio>
+                                <audio id="player1" ng-if="gender == 'female'" ng-src="{{details.sounds[1].url}}" type="audio/mpeg"></audio>
                                 <button class="glyphicon glyphicon-play" ng-click="play1()"></button>
                             </td>
                             <td>Wovel sound</td>
                         </tr>
                         <tr>
                             <td>
+                                <!--
                                 <audio id="player2" ng-if="gender == 'male'" ng-src="{{item.soundLongMale}}" type="audio/mpeg"></audio>
                                 <audio id="player2" ng-if="gender == 'female'" ng-src="{{item.soundLongFemale}}" type="audio/mpeg"></audio>
+                                -->
+                                <audio id="player2" ng-if="gender == 'male'" ng-src="{{details.sounds[2].url}}" type="audio/mpeg"></audio>
+                                <audio id="player2" ng-if="gender == 'female'" ng-src="{{details.sounds[3].url}}" type="audio/mpeg"></audio>
                                 <button class="glyphicon glyphicon-play" ng-click="play2()"></button>
                             </td>
                             <td>Sound in context</td>
@@ -115,11 +131,11 @@
                 <div class="col-md-12">
                     <h5>Short description</h5>
                     <p>
-                    {{item.descriptionShort}}
+                    {{details.textes[0].text}}
                     </p>
                     <h5>Long description</h5>
                     <p>
-                    {{item.descriptionLong}}
+                    {{details.textes[1].text}}
                     </p>
                 </div>
             </div>
