@@ -9,7 +9,8 @@ var mainApp = angular.module(
         'ui.bootstrap', 
         'ui.bootstrap.progressbar',
         'ngTouch',  
-        'homeApp'    
+        'homeApp',
+        'configApp'    
     ]);
 
 // basic route provider is redirecting to home
@@ -58,6 +59,6 @@ mainApp.filter('flToHHmmss', function() {
 // main controller
 mainApp.controller('MainCtrl', MainCtrl);
 
-// FACTORIES
+// MAIN FACTORIES
 mainApp.factory('UtilsFactory', UtilsFactory);
 mainApp.factory('MainFactory', MainFactory);
