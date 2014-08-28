@@ -6,7 +6,7 @@ var configApp = angular.module('configApp', []);
 configApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider
-        .when('/config', {
+        .when('/config/:langue/:methode?', {
             templateUrl: 'js/app/modules/config/partials/config.html',
             controller: 'ConfigCtrl'
         });

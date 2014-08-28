@@ -10,7 +10,8 @@ var mainApp = angular.module(
         'ui.bootstrap.progressbar',
         'ngTouch',  
         'homeApp',
-        'configApp'    
+        'configApp',
+        'services' 
     ]);
 
 // basic route provider is redirecting to home
@@ -18,7 +19,7 @@ mainApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
         when('/', {
-            redirectTo: '/home'
+            redirectTo: '/home/uk/gattegno'
         });
     }
 ]);

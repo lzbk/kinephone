@@ -67,6 +67,9 @@ function UtilsFactory($modal) {
             };
             request.open('POST', url);
             request.send(data);
+        },
+        test : function(){
+            return 'test';
         }
     };
 
