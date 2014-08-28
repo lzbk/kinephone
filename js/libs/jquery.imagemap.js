@@ -60,8 +60,7 @@
 				}).attr('src', $that.attr('src'));
 			});
 		};
-		$(window).resize(rwdImageMap).trigger('resize');
-		
+		$(window).resize(rwdImageMap).trigger('resize');		
 		return this;
 	};
 })(jQuery);

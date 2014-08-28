@@ -32,7 +32,6 @@ function HomeCtrl($scope, $http, $interval, $routeParams, Datas) {
         $('img[usemap]').rwdImageMaps();
         $('#right-panel').hide();
     };
-
     angular.element(document).ready(function() {
         //$scope.init(); 
         Datas.get({
@@ -49,17 +48,19 @@ function HomeCtrl($scope, $http, $interval, $routeParams, Datas) {
         }, 0);
     }
     $scope.toggleRightPanel = function() {
-        $('#right-panel').toggle('slide', {
-            direction: 'right'
-        }, 1000, function() {
+        //e.preventDefault();
+
+        $("#wrapper").toggleClass("toggled");
+        // redraw image maps after transition made by css
+        window.setTimeout(function() {
+            updateImageMap();
             $scope.panelVisible = !$scope.panelVisible;
-        });
+        }, 400);
     }
     $scope.showDetails = function(e) {
         var id = e.target.id;
         // load details
         $scope.details = getDetails(id);
-        $scope.$apply();
         // no items have been selected or the item previously clicked is the same
         if ($scope.currentId == 0 || $scope.currentId == id || ($scope.currentId != id && !$scope.panelVisible)) {
             $scope.toggleRightPanel();
@@ -89,5 +90,42 @@ function HomeCtrl($scope, $http, $interval, $routeParams, Datas) {
                 return $scope.datas.items[index];
             }
         }
+    }
+
+    function updateImageMap() {
+        var $img = $('#big-image');
+        $img.each(function() {
+            if (typeof($(this).attr('usemap')) == 'undefined') return;
+            var that = this,
+                $that = $(that);
+            // Since WebKit doesn't know the height until after the image has loaded, perform everything in an onload copy
+            $('<img />').load(function() {
+                var attrW = 'width',
+                    attrH = 'height',
+                    w = $that.attr(attrW),
+                    h = $that.attr(attrH);
+                if (!w || !h) {
+                    var temp = new Image();
+                    temp.src = $that.attr('src');
+                    if (!w) w = temp.width;
+                    if (!h) h = temp.height;
+                }
+                var wPercent = $that.width() / 100,
+                    hPercent = $that.height() / 100,
+                    map = $that.attr('usemap').replace('#', ''),
+                    c = 'coords';
+                $('map[name="' + map + '"]').find('area').each(function() {
+                    var $this = $(this);
+                    if (!$this.data(c)) $this.data(c, $this.attr(c));
+                    var coords = $this.data(c).split(','),
+                        coordsPercent = new Array(coords.length);
+                    for (var i = 0; i < coordsPercent.length; ++i) {
+                        if (i % 2 === 0) coordsPercent[i] = parseInt(((coords[i] / w) * 100) * wPercent);
+                        else coordsPercent[i] = parseInt(((coords[i] / h) * 100) * hPercent);
+                    }
+                    $this.attr(c, coordsPercent.toString());
+                });
+            }).attr('src', $that.attr('src'));
+        });
     }
 }
