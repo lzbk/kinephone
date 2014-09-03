@@ -1,134 +1,113 @@
-<!-- Sidebar -->
-<div id="sidebar-wrapper">
-    <div id="details-container">
-        <div class="row">
-            <div class="col-md-12">
-                <span class="btn glyphicon glyphicon-off" ng-click="toggleRightPanel()"> </span> Détails
-            </div>
+<!-- config left bar -->
+<div id="config-bar-wrapper">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <span class="btn glyphicon glyphicon-off" ng-click="toggleConfigPanel()"> </span>
         </div>
-        <hr/>
-        <!-- images row -->
-        <div ng-if="details.images[0].visible || details.images[1].visible">
-            <div class="row">
-                <div ng-if="details.images[0].visible">
-                    <div ng-class="details.images[1].visible ? 'col-md-6':'col-md-12'"  class="text-center">
-                        <div class="detail-img-container">
-                            <img id="img-1" ng-src="{{details.images[0].url}}">
-                        </div>
-                    </div>
-                </div>
-                <div ng-if="details.images[1].visible">
-                    <div ng-class="details.images[0].visible ? 'col-md-6':'col-md-12'" class="text-center">
-                        <div class="detail-img-container">
-                            <img id="img-2" ng-src="{{details.images[1].url}}">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr/>
-        </div>
-        <!-- sounds row -->
-        <!-- if no controls are set, audio player will not show -->
-        <div ng-if="details.sounds[0].visible || details.sounds[1].visible">
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table">
-                        <tr ng-if="(details.sounds[0].visible && gender == 'male') || (details.sounds[1].visible && gender == 'female')">
-                            <td>
-                                <audio id="player1" ng-if="gender == 'male'" ng-src="{{details.sounds[0].url}}" type="audio/mpeg"></audio>
-                                <audio id="player1" ng-if="gender == 'female'" ng-src="{{details.sounds[1].url}}" type="audio/mpeg"></audio>
-                                <button class="glyphicon glyphicon-play" ng-click="play1()"></button>
-                            </td>
-                            <td>Wovel sound</td>
-                        </tr>
-                        <tr ng-if="(details.sounds[2].visible && gender == 'male') || (details.sounds[3].visible && gender == 'female')">
-                            <td>
-                                <audio id="player2" ng-if="gender == 'male'" ng-src="{{details.sounds[2].url}}" type="audio/mpeg"></audio>
-                                <audio id="player2" ng-if="gender == 'female'" ng-src="{{details.sounds[3].url}}" type="audio/mpeg"></audio>
-                                <button class="glyphicon glyphicon-play" ng-click="play2()"></button>
-                            </td>
-                            <td>Sound in context</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <hr/>
-        </div>
-        <!-- texts row -->
-        <div ng-if="details.texts[0].visible || details.texts[1].visible">
-            <div class="row">
-                <div class="col-md-12">
-                    <div ng-if="details.texts[0].visible">
-                        <h5>Short description</h5>
-                        <p>
-                        {{details.texts[0].text}}
-                        </p>
-                    </div>
-                    <div ng-if="details.texts[1].visible">
-                        <h5>Long description</h5>
-                        <p>
-                        {{details.texts[1].text}}
-                        </p>
-                    </div>
-                </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="play-mode-buttons btn-group">
+                <button ng-class="gender === 'male' ? 'btn btn-default active':'btn btn-default'" ng-model="gender" ng-click="genderChanged('male')">
+                <i class="fa fa-male"></i>
+                </button>
+                <button ng-class="gender === 'female' ? 'btn btn-default active':'btn btn-default'" ng-model="gender" ng-click="genderChanged('female')">
+                <i class="fa fa-female"></i>
+                </button>
             </div>
         </div>
     </div>
+    <hr/>
 </div>
-<!-- /#sidebar-wrapper -->
+<!-- /config left bar -->
 <!-- Page Content -->
-<div id="page-content-wrapper">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">KINEPHONE APP</a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gender <span class="caret"></span></a>
-                        <ul class="dropdown-menu dropdown-menu-form"  role="menu">
-                            <li>
-                                <label class="checkbox">
-                                    <input type="radio" ng-model="gender" name="gender" ng-change="genderChanged(gender)" value="male" checked="checked">
-                                    Male
-                                </label>
-                            </li>
-                            <li>
-                                <label class="checkbox">
-                                    <input type="radio" ng-model="gender" name="gender" ng-change="genderChanged(gender)" value="female" checked="checked">
-                                    Female
-                                </label>
-                            </li>
-                        </ul>
-                    </li>
-                    <!--
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Model <span class="caret"></span></a>
-                        <ul class="dropdown-menu dropdown-menu-form" role="menu">
-                            <li>
-                                <label class="checkbox">
-                                    <input type="radio" ng-model="model" name="model" ng-change="modelChanged(model)" value="gattegno">
-                                    Gattegno
-                                </label>
-                            </li>
-                            <li>
-                                <label class="checkbox">
-                                    <input type="radio" ng-model="model" name="model" ng-change="modelChanged(model)" value="model2">
-                                    Model 2
-                                </label>
-                            </li>
-                        </ul>
-                    </li>
-                    -->
-                </ul>
-            </div>
-        </div>
-        <div class="panel-body text-center">
-            <img id="big-image" ng-src="{{data.image}}" usemap="#map" >
+<!--<div id="page-content-wrapper">-->
+    <div class="row">
+        <!-- big image -->
+        <div class="col-md-9 text-center col-full-height">
+            <img id="big-image" ng-src="{{data.image}}" class="img-responsive" usemap="#map" >
             <map id="big-image-map" name="map">
             <area shape="rect" ng-repeat="item in data.items" id="{{item.id}}" href="javascript:void(0);" ng-click="showDetails($event)" coords="{{item.coords}}"/>
             </map>
         </div>
+        <!-- right panel -->
+        <div class="col-md-3 col-full-height details">
+            <!--<div id="details-container">-->
+                <!-- No details -->                
+                <div ng-if="!details">
+                    <h3>Click on a rectangle to see details</h3>
+                </div>
+                <div ng-if="details">
+                    <!-- images row -->
+                    <div ng-if="details.images[0].visible || details.images[1].visible">
+                        <div class="row">
+                            <div ng-if="details.images[0].visible">
+                                <div ng-class="details.images[1].visible ? 'col-md-6':'col-md-12'"  class="text-center">
+                                    <div class="detail-img-container">
+                                        <img id="img-1" ng-src="{{details.images[0].url}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="details.images[1].visible">
+                                <div ng-class="details.images[0].visible ? 'col-md-6':'col-md-12'" class="text-center">
+                                    <div class="detail-img-container">
+                                        <img id="img-2" ng-src="{{details.images[1].url}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+                    <!-- sounds row -->
+                    <!-- if no controls are set, audio player will not show -->
+                    <div ng-if="details.sounds[0].visible || details.sounds[1].visible">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <tr ng-if="(details.sounds[0].visible && gender == 'male') || (details.sounds[1].visible && gender == 'female')">
+                                        <td>
+                                            <audio id="player1" ng-if="gender == 'male'" ng-src="{{details.sounds[0].url}}" type="audio/mpeg"></audio>
+                                            <audio id="player1" ng-if="gender == 'female'" ng-src="{{details.sounds[1].url}}" type="audio/mpeg"></audio>
+                                            <button class="glyphicon glyphicon-play" ng-click="play1()"></button>
+                                        </td>
+                                        <td>Wovel sound</td>
+                                    </tr>
+                                    <tr ng-if="(details.sounds[2].visible && gender == 'male') || (details.sounds[3].visible && gender == 'female')">
+                                        <td>
+                                            <audio id="player2" ng-if="gender == 'male'" ng-src="{{details.sounds[2].url}}" type="audio/mpeg"></audio>
+                                            <audio id="player2" ng-if="gender == 'female'" ng-src="{{details.sounds[3].url}}" type="audio/mpeg"></audio>
+                                            <button class="glyphicon glyphicon-play" ng-click="play2()"></button>
+                                        </td>
+                                        <td>Sound in context</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+                    <!-- texts row -->
+                    <div ng-if="details.texts[0].visible || details.texts[1].visible">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div ng-if="details.texts[0].visible">
+                                    <h5>Short description</h5>
+                                    <p>
+                                    {{details.texts[0].text}}
+                                    </p>
+                                </div>
+                                <div ng-if="details.texts[1].visible">
+                                    <h5>Long description</h5>
+                                    <p>
+                                    {{details.texts[1].text}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!--</div>-->
+        </div>
+        <!-- /#sidebar-wrapper -->
     </div>
-</div>
+<!--</div>-->
