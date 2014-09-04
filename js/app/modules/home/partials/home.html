@@ -66,6 +66,29 @@
                 <!-- if no controls are set, audio player will not show -->
                 <div ng-if="details.sounds[0].visible || details.sounds[1].visible">
                     <div class="row">
+                        <div class="col-xs-6">
+                            <audio id="player1" ng-if="gender == 'male'" ng-src="{{details.sounds[0].url}}" type="audio/mpeg"></audio>
+                            <audio id="player1" ng-if="gender == 'female'" ng-src="{{details.sounds[1].url}}" type="audio/mpeg"></audio>
+                            <button class="glyphicon glyphicon-play" hm-tap="play1()"></button>
+                        </div>
+                         <div class="col-xs-6">
+                            <span>Wovel sound</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <audio id="player2" ng-if="gender == 'male'" ng-src="{{details.sounds[2].url}}" type="audio/mpeg"></audio>
+                            <audio id="player2" ng-if="gender == 'female'" ng-src="{{details.sounds[3].url}}" type="audio/mpeg"></audio>
+                            <button class="glyphicon glyphicon-play" hm-tap="play2()"></button>
+                        </div>
+                         <div class="col-xs-6">
+                            <span>Sound in context</span>
+                        </div>
+                            
+                        </div>
+                    </div>
+                <!--
+                    <div class="row">
                         <div class="col-xs-12">
                             <div class="table-responsive">
                                 <table class="table">
@@ -89,6 +112,7 @@
                             </div>
                         </div>
                     </div>
+                    -->
                 </div>
                 <hr/>
                 <!-- texts row -->
