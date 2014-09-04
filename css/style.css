@@ -9,6 +9,11 @@ img[usemap] {
     max-width: 100%;
     width: 100%;
 }
+
+area{
+    z-index: 9999;
+}
+
 .btn {
     cursor: pointer;
     display: inline-block;
