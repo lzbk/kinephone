@@ -65,7 +65,7 @@
                 <!-- sounds row -->
                 <!-- if no controls are set, audio player will not show -->
                 <div ng-if="details.sounds[0].visible || details.sounds[1].visible">
-                    <div class="row">
+                    <div ng-if="(details.sounds[0].visible && gender == 'male') || (details.sounds[1].visible && gender == 'female')" class="row">
                         <div class="col-xs-6">
                             <audio id="player1" ng-if="gender == 'male'" ng-src="{{details.sounds[0].url}}" type="audio/mpeg"></audio>
                             <audio id="player1" ng-if="gender == 'female'" ng-src="{{details.sounds[1].url}}" type="audio/mpeg"></audio>
@@ -76,13 +76,13 @@
                         </div>
                     </div>
                     <hr/>
-                    <div class="row">
+                    <div ng-if="(details.sounds[2].visible && gender == 'male') || (details.sounds[3].visible && gender == 'female')" class="row">
                         <div class="col-xs-6">
                             <audio id="player2" ng-if="gender == 'male'" ng-src="{{details.sounds[2].url}}" type="audio/mpeg"></audio>
                             <audio id="player2" ng-if="gender == 'female'" ng-src="{{details.sounds[3].url}}" type="audio/mpeg"></audio>
                             <button class="glyphicon glyphicon-play" hm-tap="play2()"></button>
                         </div>
-                        <div class="col-xs-6">
+                        <div  class="col-xs-6">
                             <span>Sound in context</span>
                         </div>
 
