@@ -1,3 +1,16 @@
+/**
+ * Fix for iPad iOS7 slight scroll on 100% body height
+ * http://stackoverflow.com/questions/19012135/ios-7-ipad-safari-landscape-innerheight-outerheight-layout-issue
+ */
+@media (orientation:landscape) {
+    html.ipad.ios7 > body {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 672px !important;
+    }
+}
+
 body {
     margin: 0 auto;
     padding-top: 5px;
