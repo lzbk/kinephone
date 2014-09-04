@@ -64,7 +64,7 @@
                 </div>
                 <!-- sounds row -->
                 <!-- if no controls are set, audio player will not show -->
-                <div ng-if="details.sounds[0].visible || details.sounds[1].visible">
+                <div ng-if="details.sounds[0].visible || details.sounds[1].visible" class="table-responsive">
                     <!--<div class="row">
                         <div class="col-xs-12"> -->
                             <table class="table">
@@ -87,8 +87,9 @@
                             </table>
                        <!-- </div> 
                     </div>-->
-                    <hr/>
+                    
                 </div>
+                <hr/>
                 <!-- texts row -->
                 <div ng-if="details.texts[0].visible || details.texts[1].visible">
                     <div class="row">
