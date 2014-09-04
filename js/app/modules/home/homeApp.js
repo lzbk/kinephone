@@ -1,6 +1,6 @@
 'use strict';
 
-var homeApp = angular.module('homeApp', []);
+var homeApp = angular.module('homeApp', ['hmTouchEvents']);
 
 // routes for the module
 homeApp.config(['$routeProvider',
@@ -9,11 +9,7 @@ homeApp.config(['$routeProvider',
         .when('/home/:lang/:method?', {
             templateUrl: 'js/app/modules/home/partials/home.html',
             controller: 'HomeCtrl'
-        });/*
-        .when('/home/:langue/:methode?/:gender?', {
-            templateUrl: 'js/app/modules/home/partials/home.html',
-            controller: 'HomeCtrl'
-        });*/
+        });
     }
 ]);
 

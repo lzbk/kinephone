@@ -1,81 +1,84 @@
-;(function (__global, angular, hammer) {
+/*
+ * angular-hammer v1.1.3
+ * (c) 2013 Monospaced http://monospaced.com
+ * License: MIT
+ */
 
-  'use strict';
+(function(window, angular, Hammer){
 
-  if (!angular) {
-    throw new Error("window.angular is not defined.");
-  }
+var hmTouchEvents = angular.module('hmTouchEvents', []),
+    hmGestures = ['hmHold:hold',
+                  'hmTap:tap',
+                  'hmPress:press',
+                  'hmDoubletap:doubletap',
+                  'hmDrag:drag',
+                  'hmDragstart:dragstart',
+                  'hmDragend:dragend',
+                  'hmDragup:dragup',
+                  'hmDragdown:dragdown',
+                  'hmDragleft:dragleft',
+                  'hmDragright:dragright',
+                  'hmSwipe:swipe',
+                  'hmSwipeup:swipeup',
+                  'hmSwipedown:swipedown',
+                  'hmSwipeleft:swipeleft',
+                  'hmSwiperight:swiperight',
+                  'hmTransform:transform',
+                  'hmTransformstart:transformstart',
+                  'hmTransformend:transformend',
+                  'hmRotate:rotate',
+                  'hmPinch:pinch',
+                  'hmPinchin:pinchin',
+                  'hmPinchout:pinchout',
+                  'hmTouch:touch',
+                  'hmRelease:release'];
 
-  if (!Hammer) {
-    throw new Error("window.Hammer is not defined.");
-  }
+angular.forEach(hmGestures, function(name){
+  var directive = name.split(':'),
+      directiveName = directive[0],
+      eventName = directive[1];
 
-  var GESTURES = [
-    'hold',
-    'tap',
-    'doubletap',
-    'drag',
-    'dragstart',
-    'dragend',
-    'dragup',
-    'dragdown',
-    'dragleft',
-    'dragright',
-    'swipe',
-    'swipeup',
-    'swipedown',
-    'swipeleft',
-    'swiperight',
-    'transform',
-    'transformstart',
-    'transformend',
-    'rotate',
-    'pinch',
-    'pinchin',
-    'pinchout',
-    'touch',
-    'release'
-  ];
+  hmTouchEvents.directive(directiveName, ['$parse', '$window', function($parse, $window){
+    return {
+      restrict: 'A, C',
+      link: function(scope, element, attr) {
+        var expr = $parse(attr[directiveName]),
+            fn = function(event){
+              scope.$apply(function() {
+                expr(scope, {$event: event});
+              });
+            },
+            opts = $parse(attr['hmOptions'])(scope, {}),
+            hammer;
 
-  // Create clean scope
-
-  var newScope;
-
-  angular.injector(['ng']).invoke(['$rootScope', function($rootScope) {
-    newScope = $rootScope.$new();
-  }]);
-
-  // Create module
-
-  var module = angular.module('hammer', []);
-
-  GESTURES.forEach(function (gesture) {
-    var hammerGesture = 'hammer' + gesture[0].toUpperCase() + gesture.slice(1);
-
-    module.directive(hammerGesture, ['$parse', function ($parse) {
-      return function (scope, element, attr) {
-        var args = newScope.$eval(attr[hammerGesture]),
-            tapHandler,
-            options = null,
-            instance;
-
-        if (typeof args === 'undefined') {
-          tapHandler = $parse(attr[hammerGesture]);
-        } else {
-          tapHandler = $parse(args.fn);
-          delete args.fn;
-          options = args;
+        if (typeof Hammer === 'undefined' || !$window.addEventListener) {
+          // fallback to mouse events where appropriate
+          if (directiveName === 'hmTap') {
+            element.bind('click', fn);
+          }
+          if (directiveName === 'hmDoubletap') {
+            element.bind('dblclick', fn);
+          }
+          return;
         }
 
-        instance = hammer(element[0], options);
+        // don't create multiple Hammer instances per element
+        if (!(hammer = element.data('hammer'))) {
+          hammer = Hammer(element[0], opts);
+          element.data('hammer', hammer);
+        }
 
-        instance.on(gesture, function (e) {
-          scope.$apply(function () {
-            tapHandler(scope, { $event: e });
-          });
+        // bind Hammer touch event
+        hammer.on(eventName, fn);
+
+        // unbind Hammer touch event
+        scope.$on('$destroy', function(){
+          hammer.off(eventName, fn);
         });
-      };
-    }]);
-  });
 
-}(window, window.angular, window.Hammer));
+      }
+    };
+  }]);
+});
+
+})(window, window.angular, window.Hammer);

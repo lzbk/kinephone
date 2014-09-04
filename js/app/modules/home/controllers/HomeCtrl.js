@@ -5,8 +5,6 @@
  */
 function HomeCtrl($scope, $http, $interval, $routeParams, Data) {
 
-    $scope.panelVisible = false;
-    $scope.currentId = 0; // keep the id of the current selected detail in order to manage right panel opening / closing
     $scope.data = {}; // all datas for the current language and method
     $scope.details = null; // details for the current item selected
     $scope.gender = 'male';
@@ -15,23 +13,23 @@ function HomeCtrl($scope, $http, $interval, $routeParams, Data) {
     if ($routeParams.method) {
         $scope.method = $routeParams.method;
     } else {        
-        $scope.method = 1;
+        $scope.method = null;
     }
     // language
     if ($routeParams.lang) {
         $scope.lang = $routeParams.lang;
     } else {
-        $scope.lang = 1;
+        $scope.lang = null;
     }
 
     $scope.init = function() {       
         $('img[usemap]').rwdImageMaps();
         var image =  document.getElementById('big-image');
-        var hammer = new Hammer(image);
-        hammer.on("press",function(e){
-            console.log('youpla');
+       // var hammer = new Hammer(image);
+        $scope.toggleConfigPanel();
+       /* hammer.on("press",function(e){
             $scope.toggleConfigPanel();
-        });
+        });*/
        
     };
     angular.element(document).ready(function() {
@@ -54,21 +52,31 @@ function HomeCtrl($scope, $http, $interval, $routeParams, Data) {
         console.log(e);
     }
 
-    $scope.toggleRightPanel = function() {
-        $("#wrapper").toggleClass("toggled");
-        $scope.panelVisible = !$scope.panelVisible;
-    }
-
     $scope.toggleConfigPanel = function(){
-         $("#config-bar-wrapper").toggleClass("toggled");
-        //$('#config-bar-wrapper').toggle(500);
+        $("#config-bar-wrapper").toggle();
     }
 
+    // tap on table rectangle
+    $scope.playVowel = function(e){
+        var id = e.target.id;
+        // load details
+        var temp = getDetails(id);
+        if($scope.gender == 'male'){
+            $('#player0').attr('src', temp.sounds[0].url);
+        }
+        else{
+            $('#player0').attr('src', temp.sounds[1].url);
+        }
+        // this line make it work on iOS
+        $('#player0').get(0).load();
+        $('#player0').get(0).play();
+    }
+
+    // double tap on table rectangle
     $scope.showDetails = function(e) {
         var id = e.target.id;
         // load details
         $scope.details = getDetails(id);
-        $scope.currentId = id;
     }
 
     $scope.play1 = function() {
@@ -90,7 +98,7 @@ function HomeCtrl($scope, $http, $interval, $routeParams, Data) {
     
     $scope.modelChanged = function(value) {
         $scope.methode = value || 'gattegno';
-    }
+    }   
 
     function getDetails(id) {
         for (var index in $scope.data.items) {
