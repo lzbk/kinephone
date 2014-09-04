@@ -2,7 +2,7 @@ body {
     margin: 0;
     /*padding: 5px;*/
     width:100%;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 img[usemap] {
     border: none;
