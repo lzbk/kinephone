@@ -3,7 +3,7 @@ First version of kinephone proptoype.
 This prototype has to work on major portable devices (tablets and phones) and desktops / laptops.
 
 Test devices :
-- iPhone 4s / iOS 7 / Safari
+- iPhone 4s / iOS 7.1.2 / Safari
 - Asus Vivotab Smart / Windows 8 RT / Windows explorer
 - iPad (4th generation) / iOS 6.1 / Safari
 - Desktop / Linux (Crunchbang) / Firefox + Chrome
