@@ -61,15 +61,16 @@ function HomeCtrl($scope, $http, $interval, $routeParams, Data) {
         var id = e.target.id;
         // load details
         var temp = getDetails(id);
+        var player =  $('#player0');
         if($scope.gender == 'male'){
-            $('#player0').attr('src', temp.sounds[0].url);
+            player.attr('src', temp.sounds[0].url);
         }
         else{
-            $('#player0').attr('src', temp.sounds[1].url);
+            player.attr('src', temp.sounds[1].url);
         }
         // this line make it work on iOS
-        $('#player0').get(0).load();
-        $('#player0').get(0).play();
+        player.get(0).load();
+        player.get(0).play();
     }
 
     // double tap on table rectangle

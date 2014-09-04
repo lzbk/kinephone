@@ -39,24 +39,24 @@ area{
     width: 100%;
 }
 .container {
-    min-height: 100%;
+    /*min-height: 100%;*/
     overflow: hidden;
     width: 100% !important;
 }
+
+.big-img-wrapper{
+    border-right: 1px solid black;
+}
 /* make tow columns the same height even if content is empty */
-.col-full-height {
+/*.col-full-height {
     margin-bottom: -9999px;
     padding-bottom: 9999px;
-}
+}*/
 .details {
-    border-left: 1px solid black;
+    /*border-left: 1px solid black;*/
     padding-top: 5px;
 }
-#details-container {
-    border-radius: 0 0 0 15px;
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
-}
+
 #config-bar-wrapper {
     position: absolute;
     bottom: 0;

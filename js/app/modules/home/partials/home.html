@@ -3,13 +3,13 @@
     <div id="config-bar-wrapper">
         <div class="config-bar">
             <div class="row">
-                <div class="col-md-12 text-center">
+                <div class="col-xs-12 text-center">
                     <span class="btn glyphicon glyphicon-off" hm-tap="toggleConfigPanel()"> </span>
                 </div>
             </div>
             <hr/>
             <div class="row">
-                <div class="col-md-12 text-center">
+                <div class="col-xs-12 text-center">
                     <div class="play-mode-buttons btn-group">
                         <button ng-class="gender === 'male' ? 'btn btn-default active':'btn btn-default'" ng-model="gender" hm-tap="genderChanged('male')">
                         <i class="fa fa-male"></i>
@@ -26,7 +26,7 @@
     <!-- Page Content -->
     <div class="row">
         <!-- big image -->
-        <div class="col-xs-9 text-center col-full-height">
+        <div class="col-xs-9 text-center big-img-wrapper">
             <img id="big-image" ng-src="{{data.image}}" class="img-responsive" hm-press="toggleConfigPanel()" usemap="#map" >
             <map id="big-image-map" name="map">
                 <area shape="rect" ng-repeat="item in data.items" id="{{item.id}}" href="javascript:void(0);" hm-tap="playVowel($event)" hm-press="showDetails($event)" coords="{{item.coords}}"/>
@@ -35,7 +35,7 @@
             <audio id="player0" src="" type="audio/mpeg"></audio>
         </div>
         <!-- right panel -->
-        <div class="col-xs-3 col-full-height details">
+        <div class="col-xs-3">
             <!-- No details -->
             <div ng-if="!details">
                 <h3>Tap or click on a rectangle to see corresponding details</h3>
@@ -46,14 +46,14 @@
                 <div ng-if="details.images[0].visible || details.images[1].visible">
                     <div class="row">
                         <div ng-if="details.images[0].visible">
-                            <div ng-class="details.images[1].visible ? 'col-md-6':'col-md-12'"  class="text-center">
+                            <div ng-class="details.images[1].visible ? 'col-xs-6':'col-xs-12'"  class="text-center">
                                 <div class="detail-img-container">
                                     <img id="img-1" ng-src="{{details.images[0].url}}">
                                 </div>
                             </div>
                         </div>
                         <div ng-if="details.images[1].visible">
-                            <div ng-class="details.images[0].visible ? 'col-md-6':'col-md-12'" class="text-center">
+                            <div ng-class="details.images[0].visible ? 'col-xs-6':'col-xs-12'" class="text-center">
                                 <div class="detail-img-container">
                                     <img id="img-2" ng-src="{{details.images[1].url}}">
                                 </div>
@@ -66,7 +66,7 @@
                 <!-- if no controls are set, audio player will not show -->
                 <div ng-if="details.sounds[0].visible || details.sounds[1].visible">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-xs-12">
                             <table class="table">
                                 <tr ng-if="(details.sounds[0].visible && gender == 'male') || (details.sounds[1].visible && gender == 'female')">
                                     <td>
@@ -92,7 +92,7 @@
                 <!-- texts row -->
                 <div ng-if="details.texts[0].visible || details.texts[1].visible">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-xs-12">
                             <div ng-if="details.texts[0].visible">
                                 <h5>Short description</h5>
                                 <p>
