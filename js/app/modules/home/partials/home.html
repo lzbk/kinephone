@@ -72,7 +72,7 @@
                                     <td>
                                         <audio id="player1" ng-if="gender == 'male'" ng-src="{{details.sounds[0].url}}" type="audio/mpeg"></audio>
                                         <audio id="player1" ng-if="gender == 'female'" ng-src="{{details.sounds[1].url}}" type="audio/mpeg"></audio>
-                                        <button class="glyphicon glyphicon-play" ng-tap="play1()"></button>
+                                        <button class="glyphicon glyphicon-play" hm-tap="play1()"></button>
                                     </td>
                                     <td>Wovel sound</td>
                                 </tr>
@@ -80,7 +80,7 @@
                                     <td>
                                         <audio id="player2" ng-if="gender == 'male'" ng-src="{{details.sounds[2].url}}" type="audio/mpeg"></audio>
                                         <audio id="player2" ng-if="gender == 'female'" ng-src="{{details.sounds[3].url}}" type="audio/mpeg"></audio>
-                                        <button class="glyphicon glyphicon-play" ng-tap="play2()"></button>
+                                        <button class="glyphicon glyphicon-play" hm-tap="play2()"></button>
                                     </td>
                                     <td>Sound in context</td>
                                 </tr>
