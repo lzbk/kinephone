@@ -24,7 +24,7 @@ img[usemap] {
     width: 100%;
 }
 
-area{
+map area{
     z-index: 9999;
 }
 
