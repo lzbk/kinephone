@@ -3,19 +3,19 @@
  *
  * @param {type} $scope scope
  */
-function HomeCtrl($scope, $http, $interval, $routeParams, Data) {
+function HomeCtrl($scope, $routeParams, Data) {
 
     $scope.data = {}; // all datas for the current language and method
     $scope.details = null; // details for the current item selected
     $scope.gender = 'male';
     // url params //
-    // method
+    // method id
     if ($routeParams.method) {
         $scope.method = $routeParams.method;
     } else {        
         $scope.method = null;
     }
-    // language
+    // language id
     if ($routeParams.lang) {
         $scope.lang = $routeParams.lang;
     } else {
@@ -25,7 +25,7 @@ function HomeCtrl($scope, $http, $interval, $routeParams, Data) {
     $scope.init = function() {       
         $('img[usemap]').rwdImageMaps();
         $scope.toggleConfigPanel();
-        // eventually create an html5 audio element object for each item sound with preload attribute set to auto
+        // create an html5 audio element object for each item sound
         createAudioElements($scope.gender);
     };
     angular.element(document).ready(function() {
@@ -56,42 +56,26 @@ function HomeCtrl($scope, $http, $interval, $routeParams, Data) {
     $scope.playVowel = function(e){
         var id = e.target.id;
         angular.element('#phonem-' + id + '-' + $scope.gender ).get(0).play();
-
-
-
-        // load details
-        /*var temp = getDetails(id);
-        var player =  $('#player0');
-        if($scope.gender == 'male'){
-            player.attr('src', temp.sounds[0].url);
-        }
-        else{
-            player.attr('src', temp.sounds[1].url);
-        }
-        // this line make it work on iOS
-        player.get(0).load();
-        player.get(0).play();*/
     }
 
-    // double tap on table rectangle
-    $scope.showDetails = function(e) {
+    // press (long click) on table rectangle
+    $scope.showItemDetails = function(e) {
+        alert ('pressed');
         var id = e.target.id;
-        // load details
-        $scope.details = getDetails(id);
+        // get item details
+        $scope.details = getItemDetails(id);
     }
 
     $scope.play1 = function() {
         // this line make it work on iOS
-        //$('#player1').get(0).load();
-        //$('#player1').get(0).play();
+        angular.element('#phonem-' + $scope.details.id + '-' + $scope.gender ).get(0).load();
         angular.element('#phonem-' + $scope.details.id + '-' + $scope.gender ).get(0).play();
     }
 
     $scope.play2 = function() {
         // this line make it work on iOS
-        //$('#player2').get(0).load();
-        //$('#player2').get(0).play();
-         angular.element('#word-' + $scope.details.id + '-' + $scope.gender ).get(0).play();
+        angular.element('#word-' + $scope.details.id + '-' + $scope.gender ).get(0).load();
+        angular.element('#word-' + $scope.details.id + '-' + $scope.gender ).get(0).play();
     }
 
     $scope.genderChanged = function(value) {
@@ -102,7 +86,7 @@ function HomeCtrl($scope, $http, $interval, $routeParams, Data) {
         $scope.methode = value || 'gattegno';
     }   
 
-    function getDetails(id) {
+    function getItemDetails(id) {
         for (var index in $scope.data.items) {
             if (id == $scope.data.items[index].id) {
                 return $scope.data.items[index];
