@@ -24,13 +24,9 @@ function HomeCtrl($scope, $http, $interval, $routeParams, Data) {
 
     $scope.init = function() {       
         $('img[usemap]').rwdImageMaps();
-        var image =  document.getElementById('big-image');
-       // var hammer = new Hammer(image);
         $scope.toggleConfigPanel();
-       /* hammer.on("press",function(e){
-            $scope.toggleConfigPanel();
-        });*/
-       
+        // eventually create an html5 audio element object for each item sound with preload attribute set to auto
+        createAudioElements($scope.gender);
     };
     angular.element(document).ready(function() {
         // get datas
@@ -59,8 +55,12 @@ function HomeCtrl($scope, $http, $interval, $routeParams, Data) {
     // tap on table rectangle
     $scope.playVowel = function(e){
         var id = e.target.id;
+        angular.element('#phonem-' + id + '-' + $scope.gender ).get(0).play();
+
+
+
         // load details
-        var temp = getDetails(id);
+        /*var temp = getDetails(id);
         var player =  $('#player0');
         if($scope.gender == 'male'){
             player.attr('src', temp.sounds[0].url);
@@ -70,7 +70,7 @@ function HomeCtrl($scope, $http, $interval, $routeParams, Data) {
         }
         // this line make it work on iOS
         player.get(0).load();
-        player.get(0).play();
+        player.get(0).play();*/
     }
 
     // double tap on table rectangle
@@ -82,18 +82,19 @@ function HomeCtrl($scope, $http, $interval, $routeParams, Data) {
 
     $scope.play1 = function() {
         // this line make it work on iOS
-        $('#player1').get(0).load();
-        $('#player1').get(0).play();
+        //$('#player1').get(0).load();
+        //$('#player1').get(0).play();
+        angular.element('#phonem-' + $scope.details.id + '-' + $scope.gender ).get(0).play();
     }
 
     $scope.play2 = function() {
         // this line make it work on iOS
-        $('#player2').get(0).load();
-        $('#player2').get(0).play();
+        //$('#player2').get(0).load();
+        //$('#player2').get(0).play();
+         angular.element('#word-' + $scope.details.id + '-' + $scope.gender ).get(0).play();
     }
 
     $scope.genderChanged = function(value) {
-        console.log(value);
         $scope.gender = value || 'male';
     }
     
@@ -106,6 +107,25 @@ function HomeCtrl($scope, $http, $interval, $routeParams, Data) {
             if (id == $scope.data.items[index].id) {
                 return $scope.data.items[index];
             }
+        }
+    }
+
+    /**
+    create all audio elements at startup
+    this will allow to play all audio with no loading time 
+    **/
+    function createAudioElements(gender){
+        for (var i in $scope.data.items){
+            console.log($scope.data.items[i]);
+            var id = $scope.data.items[i].id;
+            var html = '';
+            for (var j in $scope.data.items[i].sounds){
+                html += '<audio id="' + $scope.data.items[i].sounds[j].type + '-' + id + '-' + $scope.data.items[i].sounds[j].gender + '"';
+                html += ' preload="auto" type="audio/mpeg"';
+                html += ' src="' + $scope.data.items[i].sounds[j].url + '">';
+                html += '</audio>';
+            }
+            angular.element('.audio-container').append(html);
         }
     }
 }
