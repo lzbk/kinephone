@@ -8,6 +8,7 @@ function HomeCtrl($scope, $routeParams, Data) {
     $scope.data = {}; // all datas for the current language and method
     $scope.details = null; // details for the current item selected
     $scope.gender = 'male';
+    $scope.configVisible = true;
     // url params //
     // method id
     if ($routeParams.method) {
@@ -23,17 +24,10 @@ function HomeCtrl($scope, $routeParams, Data) {
     }
 
     $scope.init = function() {    
-
         $('img[usemap]').rwdImageMaps();
         $scope.toggleConfigPanel();
         // create an html5 audio element object for each item sound
         createAudioElements($scope.gender);
-        // add transparent interactive layer with a transparent div (with % width and height) for each item
-        /*var position = $('img[usemap]').position();
-        var width = $('img[usemap]').width();
-        var height = $('img[usemap]').height();
-        drawInteractiveLayer(width, height, position.top, position.left);*/
-
     };
     angular.element(document).ready(function() {
          
@@ -57,7 +51,8 @@ function HomeCtrl($scope, $routeParams, Data) {
     }
 
     $scope.toggleConfigPanel = function(){
-        $("#config-bar-wrapper").toggle();
+        angular.element("#config-bar-wrapper").toggle('slide', { direction: 'down' });  
+        // angular.element("#config-bar-wrapper").toggleClass('toggled');      
     }
 
     // tap on table rectangle

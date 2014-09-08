@@ -39,10 +39,10 @@
             <div class="details-wrapper">
             <!-- No details -->
             <div ng-if="!details">
-                <h3>Tap or click on a rectangle to hear the wovel sound</h3>
+                <h3>Tap (= click for a short time) on a rectangle to hear the wovel sound</h3>
                 <h3>Press (= click for a long time) on a rectangle to see corresponding details</h3>
             </div>
-            <div ng-if="details">
+            <div  ng-if="details">
                 <!-- images row -->
                 <div ng-if="details.images[0].visible || details.images[1].visible">
                     <div class="row">
@@ -84,27 +84,29 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <hr/>
-            <!-- texts row -->
-            <div ng-if="details.texts[0].visible || details.texts[1].visible">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div ng-if="details.texts[0].visible">
-                            <h5>Short description</h5>
-                            <p>
-                            {{details.texts[0].text}}
-                            </p>
-                        </div>
-                        <div ng-if="details.texts[1].visible">
-                            <h5>Long description</h5>
-                            <p>
-                            {{details.texts[1].text}}
-                            </p>
+                <hr/>
+                <!-- texts row -->
+                <div ng-if="details.texts[0].visible || details.texts[1].visible">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div ng-if="details.texts[0].visible">
+                                <h5>Short description</h5>
+                                <p>
+                                {{details.texts[0].text}}
+                                </p>
+                            </div>
+                            <div ng-if="details.texts[1].visible">
+                                <h5>Long description</h5>
+                                <p>
+                                {{details.texts[1].text}}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+           
+            
 
                 </div>
         </div>
