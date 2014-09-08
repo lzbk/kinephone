@@ -22,13 +22,21 @@ function HomeCtrl($scope, $routeParams, Data) {
         $scope.lang = null;
     }
 
-    $scope.init = function() {       
+    $scope.init = function() {    
+
         $('img[usemap]').rwdImageMaps();
         $scope.toggleConfigPanel();
         // create an html5 audio element object for each item sound
         createAudioElements($scope.gender);
+        // add transparent interactive layer with a transparent div (with % width and height) for each item
+        /*var position = $('img[usemap]').position();
+        var width = $('img[usemap]').width();
+        var height = $('img[usemap]').height();
+        drawInteractiveLayer(width, height, position.top, position.left);*/
+
     };
     angular.element(document).ready(function() {
+         
         // get datas
         Data.query({
             langId: $scope.lang,
@@ -60,7 +68,6 @@ function HomeCtrl($scope, $routeParams, Data) {
 
     // press (long click) on table rectangle
     $scope.showItemDetails = function(e) {
-        alert ('pressed');
         var id = e.target.id;
         // get item details
         $scope.details = getItemDetails(id);
@@ -100,7 +107,6 @@ function HomeCtrl($scope, $routeParams, Data) {
     **/
     function createAudioElements(gender){
         for (var i in $scope.data.items){
-            console.log($scope.data.items[i]);
             var id = $scope.data.items[i].id;
             var html = '';
             for (var j in $scope.data.items[i].sounds){
@@ -110,6 +116,29 @@ function HomeCtrl($scope, $routeParams, Data) {
                 html += '</audio>';
             }
             angular.element('.audio-container').append(html);
+        }
+    }
+
+    function drawInteractiveLayer(width, height, top, left){
+        console.log(width);
+        for (var i in $scope.data.items){
+            if(i === 0){
+            // x1,y1,x2,y2
+            var coords = $scope.data.items[i].coords.split(',');
+
+            var iWidth = (parseInt(coords[2]) - parseInt(coords[0])) * 100 / parseInt(width);
+            var iHeight = (parseInt(coords[3]) - parseInt(coords[1])) * 100 / parseInt(height);
+
+            /*var iWidth = (parseInt(coords[2]) - parseInt(coords[0]));
+            var iHeight = (parseInt(coords[3]) - parseInt(coords[1]));*/
+
+            var iTop = parseInt(coords[1] * height / 100) + parseInt(top * height / 100);
+            var iLeft = parseInt(coords[0] * width / 100) + parseInt(left * width / 100);
+            var rectangle = '<div class="rectangle-item" style="width:'+iWidth+'%;height:'+iHeight+'%; top:'+1+'%;left:'+1+'%;">';
+            rectangle += '</div>';
+            console.log(rectangle);
+            angular.element('.big-img-wrapper').append(rectangle);  
+            }         
         }
     }
 }

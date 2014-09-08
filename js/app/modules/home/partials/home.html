@@ -26,16 +26,17 @@
     <!-- Page Content -->
     <div class="row">
         <!-- big image -->
-        <div class="col-xs-9 text-center big-img-wrapper">
-            <img id="big-image" ng-src="{{data.image}}" class="img-responsive" hm-press="toggleConfigPanel()" usemap="#map" >
-            <map id="big-image-map" name="map">
-            <area shape="rect" ng-repeat="item in data.items" id="{{item.id}}" href="javascript:void(0);" hm-tap="playVowel($event)" hm-press="showItemDetails($event)" coords="{{item.coords}}"/>
-            </map>
-            <!-- audio player for vowels -->
-            <audio id="player0" src="" type="audio/mpeg" preload="auto"></audio>
+        <div class="col-xs-9 text-center">
+            <div class="big-img-wrapper">
+                <img id="big-image" ng-src="{{data.image}}" class="img-responsive" hm-press="toggleConfigPanel()" usemap="#map" >
+                <map id="big-image-map" name="map">
+                <area shape="rect" ng-repeat="item in data.items" id="{{item.id}}" href="javascript:void(0);" hm-tap="playVowel($event)" hm-press="showItemDetails($event)" coords="{{item.coords}}"/>
+                </map>
+            </div>
         </div>
         <!-- right panel -->
         <div class="col-xs-3">
+            <div class="details-wrapper">
             <!-- No details -->
             <div ng-if="!details">
                 <h3>Tap or click on a rectangle to see corresponding details</h3>
@@ -67,8 +68,6 @@
                 <div ng-if="details.sounds[0].visible || details.sounds[1].visible">
                     <div ng-if="(details.sounds[0].visible && gender == 'male') || (details.sounds[1].visible && gender == 'female')" class="row">
                         <div class="col-xs-6">
-                            <audio id="player1" ng-if="gender == 'male'" ng-src="{{details.sounds[0].url}}" type="audio/mpeg"></audio>
-                            <audio id="player1" ng-if="gender == 'female'" ng-src="{{details.sounds[1].url}}" type="audio/mpeg"></audio>
                             <button class="glyphicon glyphicon-play" hm-tap="play1()"></button>
                         </div>
                         <div class="col-xs-6">
@@ -78,14 +77,11 @@
                     <hr/>
                     <div ng-if="(details.sounds[2].visible && gender == 'male') || (details.sounds[3].visible && gender == 'female')" class="row">
                         <div class="col-xs-6">
-                            <audio id="player2" ng-if="gender == 'male'" ng-src="{{details.sounds[2].url}}" type="audio/mpeg" preload="auto"></audio>
-                            <audio id="player2" ng-if="gender == 'female'" ng-src="{{details.sounds[3].url}}" type="audio/mpeg" preload="auto"></audio>
                             <button class="glyphicon glyphicon-play" hm-tap="play2()"></button>
                         </div>
                         <div  class="col-xs-6">
                             <span>Sound in context</span>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -109,6 +105,8 @@
                     </div>
                 </div>
             </div>
+            
+                </div>
         </div>
     </div>
 </div>

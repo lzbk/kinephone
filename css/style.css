@@ -15,13 +15,23 @@ body {
     margin: 0 auto;
     padding-top: 5px;
     width:100%;
-    /*overflow: hidden;*/
 }
+
+.big-img-wrapper{
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 5px;
+    height: 95%;
+}
+
 img[usemap] {
     border: none;
-    height: auto;
-    max-width: 100%;
-    width: 100%;
+    height: 95%;
+    max-width: 95%;
+    width: 95%;
+    margin:0 auto;
+    border-radius:5px;
 }
 
 map area{
@@ -32,43 +42,41 @@ audio{
     visibility: collapse;
 }
 
+/* details audio play buttons */
 .btn {
     cursor: pointer;
     display: inline-block;
     vertical-align: middle;
 }
+
+.details-wrapper{
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;    
+    padding:15px;
+    height:100%;
+}
+
 .detail-img-container {
     border: 1px solid black;
     width: 75px;
     height: 75px;
     margin: 0 auto;
 }
+
 .detail-img-container img {
     vertical-align: middle;
     width: 73px;
     height: 73px;
-    margin: 0 auto;
 }
+
 .btn-image {
     width: 70px;
     margin: 0 auto;
 }
+
 #page-content-wrapper {
     width: 100%;
-}
-.container-fluid {
-    min-height: 100%;
-    overflow: hidden;
-    width: 100% !important;
-}
-
-.big-img-wrapper{
-    border-right: 1px solid black;
-}
-
-.details {
-    /*border-left: 1px solid black;*/
-    padding-top: 5px;
 }
 
 #config-bar-wrapper {
@@ -88,7 +96,14 @@ audio{
     margin: 0 auto;
     border-radius: 15px 15px 0 0;
     background-color: rgba(255, 255, 255, 0.9);
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    box-shadow: -1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+.rectangle-item{
+    background-color: #ff0000;
+    position:absolute;
+    z-index: 99999999999;
 }
