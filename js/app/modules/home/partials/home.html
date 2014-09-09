@@ -30,14 +30,14 @@
             <div class="big-img-wrapper">
                 <img id="big-image" ng-src="{{data.image}}" class="img-responsive" hm-press="toggleConfigPanel()" usemap="#map" >
                 <map id="big-image-map" name="map">
-                    <area shape="rect" ng-repeat="item in data.items" id="{{item.id}}" hm-tap="playVowel($event)" hm-press="showItemDetails($event)" coords="{{item.coords}}"/>
+                    <area shape="rect" ng-repeat="item in data.items" id="{{item.id}}" href="javascript:void(0);" hm-tap="playVowel($event)" hm-press="showItemDetails($event)" coords="{{item.coords}}"/>
                 
                 </map>
             </div>
         </div>
         <!-- right panel -->
         <div class="col-xs-3">
-            <!--<div class="details-wrapper">-->
+            <div class="details-wrapper">
             <!-- No details -->
             <div ng-if="!details">
                 <h3>Tap (= click for a short time) on a rectangle to hear the wovel sound</h3>
@@ -109,7 +109,7 @@
            
             
 
-            <!--</div>-->
+                </div>
         </div>
     </div>
 </div>
