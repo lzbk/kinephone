@@ -8,6 +8,7 @@ function HomeCtrl($scope, $routeParams, Data) {
     $scope.data = {}; // all datas for the current language and method
     $scope.details = null; // details for the current item selected
     $scope.gender = 'male';
+    $scope.sounds = new Array();
 
     // url params //
     // method id
@@ -59,7 +60,11 @@ function HomeCtrl($scope, $routeParams, Data) {
     $scope.playVowel = function(e){
         var id = e.target.id;
         // angular.element('#phonem-' + id + '-' + $scope.gender ).get(0).load();
-        angular.element('#phonem-' + id + '-' + $scope.gender ).get(0).play();
+        // angular.element('#phonem-' + id + '-' + $scope.gender ).get(0).play();
+
+        var sound = getSound(parseInt(id), $scope.gender, 'phonem');
+        if(sound)
+            sound.play();
     }
 
     // press (long click) on table rectangle
@@ -70,15 +75,19 @@ function HomeCtrl($scope, $routeParams, Data) {
     }
 
     $scope.play1 = function() {
+        var sound = getSound(parseInt($scope.details.id), $scope.gender, 'phonem');
+        sound.play();
         // this line make it work on iOS
-        angular.element('#phonem-' + $scope.details.id + '-' + $scope.gender ).get(0).load();
-        angular.element('#phonem-' + $scope.details.id + '-' + $scope.gender ).get(0).play();
+        // angular.element('#phonem-' + $scope.details.id + '-' + $scope.gender ).get(0).load();
+        // angular.element('#phonem-' + $scope.details.id + '-' + $scope.gender ).get(0).play();
     }
 
     $scope.play2 = function() {
+        var sound = getSound(parseInt($scope.details.id), $scope.gender, 'word');
+        sound.play();
         // this line make it work on iOS
-        angular.element('#word-' + $scope.details.id + '-' + $scope.gender ).get(0).load();
-        angular.element('#word-' + $scope.details.id + '-' + $scope.gender ).get(0).play();
+        // angular.element('#word-' + $scope.details.id + '-' + $scope.gender ).get(0).load();
+        // angular.element('#word-' + $scope.details.id + '-' + $scope.gender ).get(0).play();
     }
 
     $scope.genderChanged = function(value) {
@@ -97,11 +106,21 @@ function HomeCtrl($scope, $routeParams, Data) {
         }
     }
 
+    function getSound(id, gender, type){
+        for(var i in $scope.sounds){
+            if($scope.sounds[i].gender === gender && $scope.sounds[i].id === id && $scope.sounds[i].type === type){
+                console.log ('found');
+                console.log($scope.sounds[i]);
+                return $scope.sounds[i].sound;
+            }
+        }
+    }
+
     /**
     create all audio elements at startup
     this will allow to play all audio with no loading time...
     **/
-    function createAudioElements(gender){
+    /*function createAudioElements(gender){
         for (var i in $scope.data.items){
             var id = $scope.data.items[i].id;
             var html = '';
@@ -113,6 +132,26 @@ function HomeCtrl($scope, $routeParams, Data) {
             }
             angular.element('.audio-container').append(html);
         }
+    }*/
+
+    function createAudioElements(gender){
+        for (var i in $scope.data.items){
+            var id = parseInt($scope.data.items[i].id);
+            // var html = '';
+            for (var j in $scope.data.items[i].sounds){
+                var sound = new Audio($scope.data.items[i].sounds[j].url);
+                var data = {'id' : id, 'type': $scope.data.items[i].sounds[j].type, 'gender' : $scope.data.items[i].sounds[j].gender, 'sound' : sound};
+
+                $scope.sounds.push(data);
+
+               /* html += '<audio id="' + $scope.data.items[i].sounds[j].type + '-' + id + '-' + $scope.data.items[i].sounds[j].gender + '"';
+                html += ' preload="auto" type="audio/mpeg"';
+                html += ' src="' + $scope.data.items[i].sounds[j].url + '">';
+                html += '</audio>';*/
+            }
+            //angular.element('.audio-container').append(html);
+        }
+        console.log($scope.sounds);
     }
 
     function drawInteractiveLayer(width, height, top, left){
