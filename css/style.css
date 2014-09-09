@@ -34,7 +34,6 @@ img[usemap] {
 }
 
 area{
-    z-index: 999999;
     cursor: pointer;
     display: block;
 }
