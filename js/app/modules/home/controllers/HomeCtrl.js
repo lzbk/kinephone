@@ -58,6 +58,7 @@ function HomeCtrl($scope, $routeParams, Data) {
     // tap on table rectangle
     $scope.playVowel = function(e){
         var id = e.target.id;
+        angular.element('#phonem-' + id + '-' + $scope.gender ).get(0).load();
         angular.element('#phonem-' + id + '-' + $scope.gender ).get(0).play();
     }
 
