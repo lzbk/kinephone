@@ -58,7 +58,7 @@ function HomeCtrl($scope, $routeParams, Data) {
     // tap on table rectangle
     $scope.playVowel = function(e){
         var id = e.target.id;
-        angular.element('#phonem-' + id + '-' + $scope.gender ).get(0).load();
+        // angular.element('#phonem-' + id + '-' + $scope.gender ).get(0).load();
         angular.element('#phonem-' + id + '-' + $scope.gender ).get(0).play();
     }
 
@@ -99,7 +99,7 @@ function HomeCtrl($scope, $routeParams, Data) {
 
     /**
     create all audio elements at startup
-    this will allow to play all audio with no loading time 
+    this will allow to play all audio with no loading time...
     **/
     function createAudioElements(gender){
         for (var i in $scope.data.items){
