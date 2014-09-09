@@ -8,7 +8,7 @@ function HomeCtrl($scope, $routeParams, Data) {
     $scope.data = {}; // all datas for the current language and method
     $scope.details = null; // details for the current item selected
     $scope.gender = 'male';
-    $scope.configVisible = true;
+
     // url params //
     // method id
     if ($routeParams.method) {
@@ -70,13 +70,13 @@ function HomeCtrl($scope, $routeParams, Data) {
 
     $scope.play1 = function() {
         // this line make it work on iOS
-        //angular.element('#phonem-' + $scope.details.id + '-' + $scope.gender ).get(0).load();
+        angular.element('#phonem-' + $scope.details.id + '-' + $scope.gender ).get(0).load();
         angular.element('#phonem-' + $scope.details.id + '-' + $scope.gender ).get(0).play();
     }
 
     $scope.play2 = function() {
         // this line make it work on iOS
-        //angular.element('#word-' + $scope.details.id + '-' + $scope.gender ).get(0).load();
+        angular.element('#word-' + $scope.details.id + '-' + $scope.gender ).get(0).load();
         angular.element('#word-' + $scope.details.id + '-' + $scope.gender ).get(0).play();
     }
 
