@@ -97,8 +97,6 @@ function HomeCtrl($scope, $routeParams, Data) {
     function getSound(id, gender, type){
         for(var i in $scope.sounds){
             if($scope.sounds[i].gender === gender && $scope.sounds[i].id === id && $scope.sounds[i].type === type){
-                console.log ('found');
-                console.log($scope.sounds[i]);
                 return $scope.sounds[i].sound;
             }
         }
@@ -107,13 +105,11 @@ function HomeCtrl($scope, $routeParams, Data) {
     function createAudioElements(gender){
         for (var i in $scope.data.items){
             var id = parseInt($scope.data.items[i].id);
-            // var html = '';
             for (var j in $scope.data.items[i].sounds){
                 var sound = new Audio($scope.data.items[i].sounds[j].url);
                 var data = {'id' : id, 'type': $scope.data.items[i].sounds[j].type, 'gender' : $scope.data.items[i].sounds[j].gender, 'sound' : sound};
                 $scope.sounds.push(data);
             }
         }
-        console.log($scope.sounds);
     }
 }
