@@ -28,10 +28,9 @@
         <!-- big image -->
         <div class="col-xs-9 text-center">
             <div class="big-img-wrapper">
-                <img id="big-image" ng-src="{{data.image}}" class="img-responsive" hm-press="toggleConfigPanel()" usemap="#map" >
+                <img id="big-image" ng-src="{{data.image}}" class="img-responsive" hm-hold="toggleConfigPanel()" usemap="#map" >
                 <map id="big-image-map" name="map">
-                <area shape="rect" ng-repeat="item in data.items" id="{{item.id}}" hm-tap="playVowel($event)" hm-press="showItemDetails($event)" coords="{{item.coords}}"/>
-
+                    <area shape="rect" ng-repeat="item in data.items" id="{{item.id}}" hm-tap="playVowel($event)" hm-hold="showItemDetails($event)" coords="{{item.coords}}"/>
                 </map>
             </div>
         </div>

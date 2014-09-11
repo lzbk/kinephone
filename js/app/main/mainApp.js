@@ -8,8 +8,7 @@ var mainApp = angular.module(
         'ui.bootstrap', 
         'ui.bootstrap.progressbar',         
         'homeApp',
-        'configApp',
-        'services' 
+        'services'
     ]);
 
 // basic route provider is redirecting to home

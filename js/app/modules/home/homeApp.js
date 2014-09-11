@@ -1,6 +1,6 @@
 'use strict';
 
-var homeApp = angular.module('homeApp', ['hmTouchEvents']);
+var homeApp = angular.module('homeApp', ['angular-gestures']);
 
 // routes for the module
 homeApp.config(['$routeProvider',
