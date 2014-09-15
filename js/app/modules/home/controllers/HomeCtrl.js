@@ -48,6 +48,7 @@ function HomeCtrl($scope, $location, $routeParams, Data) {
 
     function error(e) {
         $location.path("/error/" + e.status);
+        $location.replace();
     }
 
     $scope.toggleConfigPanel = function(){

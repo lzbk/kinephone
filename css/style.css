@@ -22,14 +22,13 @@ body {
     box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     padding: 5px;
-    height: 95%;
+    height: 100%;
 }
 
 img[usemap] {
     border: none;
-    height: 95%;
-    max-width: 95%;
-    width: 95%;
+    max-width: 100%;
+    width: 100%;
     margin:0 auto;
 }
 
