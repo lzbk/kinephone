@@ -3,7 +3,7 @@
  *
  * @param {type} $scope scope
  */
-function HomeCtrl($scope, $routeParams, Data) {
+function HomeCtrl($scope, $location, $routeParams, Data) {
 
     $scope.data = {}; // all datas for the current language and method
     $scope.details = null; // details for the current item selected
@@ -27,7 +27,7 @@ function HomeCtrl($scope, $routeParams, Data) {
     $scope.init = function() {    
         $('img[usemap]').rwdImageMaps();
         $scope.toggleConfigPanel();
-        // create an html5 audio object for each item sound
+        // create an html5 audio object for each sound related to each item
         createAudioElements($scope.gender);
     };
     angular.element(document).ready(function() {         
@@ -47,7 +47,7 @@ function HomeCtrl($scope, $routeParams, Data) {
     }
 
     function error(e) {
-        console.log(e);
+        $location.path("/error/" + e.status);
     }
 
     $scope.toggleConfigPanel = function(){
@@ -62,8 +62,9 @@ function HomeCtrl($scope, $routeParams, Data) {
     }
 
     // press (long click) on table rectangle
-    $scope.showItemDetails = function(e) {
-        var id = e.target.id;
+    $scope.showItemDetails = function($e) {
+        $e.preventDefault();
+        var id = $e.target.id;
         // get item details
         $scope.details = getItemDetails(id);
     }
