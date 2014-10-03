@@ -1,0 +1,52 @@
+<div ng-if="tableId && langId">
+    <!-- Page Content -->
+    <div class="row">
+        <!-- big image -->
+        <div class="col-xs-12 text-center">
+            <h4>Parameters for {{currentLanguage.language_name}} / {{currentTable.table_name}}</h4>
+        </div>
+    </div>
+    <hr/>
+    <table class="table">
+        <tr>
+            <td>Show drawing</td>
+            <td><toggle-switch model="params.showImage" on-label="Yes" off-label="No"><toggle-switch></td>
+        </tr>
+        <tr>
+            <td>Show color</td>
+            <td><toggle-switch model="params.showColor" on-label="Yes" off-label="No"><toggle-switch></td>
+        </tr>
+        <tr>
+            <td>Show phonem text</td>
+            <td><toggle-switch model="params.showPhonem" on-label="Yes" off-label="No" off-value="false"><toggle-switch></td>
+        </tr>
+        <tr>
+            <td>Show word text</td>
+            <td><toggle-switch model="params.showWord" on-label="Yes" off-label="No" off-value="false"><toggle-switch></td>
+        </tr>
+         <tr>
+            <td>Show sentence text</td>
+            <td><toggle-switch model="params.showSentence" on-label="Yes" off-label="No" off-value="false"><toggle-switch></td>
+        </tr>
+        <tr>
+            <td>Show phonem sound</td>
+            <td><toggle-switch model="params.showPhonemSound" on-label="Yes" off-label="No"><toggle-switch></td>
+        </tr>
+        <tr>
+            <td>Show word sound</td>
+            <td><toggle-switch model="params.showWordSound" on-label="Yes" off-label="No"><toggle-switch></td>
+        </tr>
+         <tr>
+            <td>Show sentence sound</td>
+            <td><toggle-switch model="params.showSentenceSound" on-label="Yes" off-label="No"><toggle-switch></td>
+        </tr>
+         <tr>
+            <td></td>
+            <td><button class="btn btn-default" ng-click="update(params)">Save parameters</button></td>
+        </tr>
+    </table>
+    <p>Switch Value: {{params.showColor}}</p>
+</div>
+<div ng-if="!tableId || !langId">
+<h3>wrong url params</h3>
+</div>

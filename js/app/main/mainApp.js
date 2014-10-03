@@ -6,20 +6,24 @@ var mainApp = angular.module(
     [
         'ngRoute',
         'ui.bootstrap', 
-        'ui.bootstrap.progressbar',         
-        'homeApp',
-        'services'
+        'ui.bootstrap.progressbar', 
+        'services',
+        'angular-gestures',
+        'toggle-switch',                
+        'tableApp',
+        'paramsApp',
+        'errorApp'
     ]);
 
 // basic route provider is redirecting to home
-mainApp.config(['$routeProvider',
+/*mainApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-        when('/', {
-            redirectTo: '/home/1/1'
+        when('/:lang/:table', {
+            controller: 'MainCtrl'
         });
     }
-]);
+]);*/
 // FILTERS
 mainApp.filter('split', function() {
     return function(input, splitChar, splitIndex) {

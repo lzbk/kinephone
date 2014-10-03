@@ -1,0 +1,11 @@
+{
+    "grid_config": {
+        "columns": 14,
+        "vowels_rows": 13,
+        "syllables_rows": 13
+    },
+    "user_config":{
+    	"login": "admin",
+    	"pass": "admin"
+    }
+}

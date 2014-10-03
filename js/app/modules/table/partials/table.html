@@ -1,0 +1,95 @@
+<div ng-if="tableId && langId">
+    <!-- Page Content -->
+    <div class="row">
+        <!-- big image -->
+        <div class="col-xs-9 text-center">
+            <div class="big-img-wrapper">
+                <img id="big-image" ng-src="{{data.image}}" class="img-responsive" hm-hold="toggleConfigPanel()" usemap="#map" >
+                <map id="big-image-map" name="map">
+                <area shape="rect" ng-repeat="item in data.items" id="{{item.id}}" hm-tap="playVowel($event)" hm-hold="showItemDetails($event)" coords="{{item.coords}}"/>
+                </map>
+            </div>
+        </div>
+        <!-- right panel -->
+        <div class="col-xs-3">
+            <div class="details-wrapper">
+                <!-- No details -->
+                <div ng-if="!details">
+                    <h3>Tap (= click for a short time) on a rectangle to hear the wovel sound</h3>
+                    <h3>Press (= click for a long time) on a rectangle to see corresponding details</h3>
+                </div>
+                <div  ng-if="details">
+                    <!-- images row -->
+                    <div ng-if="params.showColor || params.showImage">
+                        <div class="row">
+                            <!-- COLOR -->
+                            <div ng-show="params.showColor" ng-class="params.showImage ? 'col-xs-6':'col-xs-12'"  class="text-center">
+                                <div class="detail-img-container">
+                                    <img id="img-1" ng-src="{{details.images[0].url}}">
+                                </div>
+                            </div>
+                            <!-- DRAWING -->
+                            <div ng-show="params.showImage" ng-class="params.showColor ? 'col-xs-6':'col-xs-12'" class="text-center">
+                                <div class="detail-img-container">
+                                    <img id="img-2" ng-src="{{details.images[1].url}}">
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+                    <!-- sounds row -->
+                    <!-- if no controls are set, audio player will not show -->
+                    <div ng-if="params.showPhonemSound || params.showWordSound || params.showSentenceSound">
+                        <div ng-show="params.showPhonemSound" class="row">
+                            <div class="col-xs-6">
+                                <button class="glyphicon glyphicon-play" hm-tap="play1()"></button>
+                            </div>
+                            <div class="col-xs-6">
+                                <span>Listen to the vowel</span>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div ng-show="params.showWordSound" class="row">
+                            <div class="col-xs-6">
+                                <button class="glyphicon glyphicon-play" hm-tap="play2()"></button>
+                            </div>
+                            <div  class="col-xs-6">
+                                <span>Listen to the vowel in a word</span>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div ng-show="params.showSentenceSound" class="row">
+                            <div class="col-xs-6">
+                                <button class="glyphicon glyphicon-play" hm-tap="play3()"></button>
+                            </div>
+                            <div  class="col-xs-6">
+                                <span>Listen to the vowel in a sentence</span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <!-- texts row -->
+                    <div ng-if="params.showPhonem || params.showWord || params.showSentence">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div ng-show="params.showPhonem">
+                                    <h5>Phonem: {{details.texts[0].text}}</h5>                                    
+                                </div>
+                                <div ng-show="params.showWord">
+                                    <h5>Word: {{details.texts[1].text}}</h5>
+                                </div>
+                                <div ng-show="params.showSentence">
+                                    <h5>Sentence: {{details.texts[1].text}}</h5>                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div ng-if="!tableId || !langId">
+<h3>wrong url params</h3>
+</div>
