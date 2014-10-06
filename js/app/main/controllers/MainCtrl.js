@@ -112,13 +112,19 @@ function MainCtrl($scope, $timeout, $location, $filter, $routeParams, Data, Conf
         $scope.gender = value || 'male';
     }
 
-    $scope.checkUser = function() {
+    $scope.signIn = function() {
         if ($scope.login == $scope.config.user_config.login && $scope.pass == $scope.config.user_config.pass) {
             window.setTimeout(function() {
                 $scope.isAuthenticated = true;
                 $scope.$apply();
             }, 0);
         }
+    }
+
+    $scope.signOut = function() {
+        $scope.login = "";
+        $scope.pass = "";
+        $scope.isAuthenticated = false;
     }
 
     $scope.onLanguageChange = function(l) {       

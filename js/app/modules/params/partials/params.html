@@ -1,12 +1,6 @@
 <div ng-if="tableId && langId">
     <!-- Page Content -->
-    <div class="row">
-        <!-- big image -->
-        <div class="col-xs-12 text-center">
-            <h4>Parameters for {{currentLanguage.language_name}} / {{currentTable.table_name}}</h4>
-        </div>
-    </div>
-    <hr/>
+    
     <table class="table">
         <tr>
             <td>Show drawing</td>
@@ -45,7 +39,6 @@
             <td><button class="btn btn-default" ng-click="update(params)">Save parameters</button></td>
         </tr>
     </table>
-    <p>Switch Value: {{params.showColor}}</p>
 </div>
 <div ng-if="!tableId || !langId">
 <h3>wrong url params</h3>

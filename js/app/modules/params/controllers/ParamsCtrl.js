@@ -7,7 +7,14 @@ function ParamsCtrl($scope, $location, Data) {
 
     $scope.$on('dataReady', mainReadyEvent);
     function mainReadyEvent() {
-        //console.log($scope.params);
+        // check if user is authenticated
+        if(!$scope.isAuthenticated){
+            redirect();
+        }
+    }
+    function redirect() {
+        $location.path( $scope.langId + "/" + $scope.tableId + "/table");
+        $location.replace();
     }
     $scope.update = function(params) {
         $scope.params.$update({
