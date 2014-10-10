@@ -13,12 +13,24 @@
         <!-- right panel -->
         <div class="col-xs-3">
             <div class="details-wrapper">
-                <!-- No details -->
-                <div ng-if="!details">
-                    <h3>Tap (= click for a short time) on a rectangle to hear the wovel sound</h3>
-                    <h3>Press (= click for a long time) on a rectangle to see corresponding details</h3>
+                <!-- Toggle details button -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button ng-class="showDetails ? 'btn btn-default fa fa-chevron-circle-up pull-right':'btn btn-default fa fa-chevron-circle-down pull-right'" ng-click="showHidePanel()" ng-model="showDetails" tooltip="{{translation.HIDE_SHOW_DETAILS}}" tooltip-placement="left"></button> 
+                    </div>
                 </div>
-                <div  ng-if="details">
+               
+                <!-- No details -->
+                <div ng-show="!details && showDetails">
+                     <hr/>
+                    <div class="row">
+                        <div class="col-xs-12">
+                           {{translation.NO_DETAILS}}
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="details && showDetails">
+                 <hr/>
                     <!-- images row -->
                     <div ng-if="params.showColor || params.showImage">
                         <div class="row">
@@ -45,7 +57,7 @@
                                 <button class="glyphicon glyphicon-play" hm-tap="play1()"></button>
                             </div>
                             <div class="col-xs-6">
-                                <span>Listen to the vowel</span>
+                                <span>{{translation.LISTEN_TO_VOWEL}}</span>
                             </div>
                         </div>
                         <hr/>
@@ -54,7 +66,7 @@
                                 <button class="glyphicon glyphicon-play" hm-tap="play2()"></button>
                             </div>
                             <div  class="col-xs-6">
-                                <span>Listen to the vowel in a word</span>
+                                <span>{{translation.LISTEN_TO_WORD}}</span>
                             </div>
                         </div>
                         <hr/>
@@ -63,7 +75,7 @@
                                 <button class="glyphicon glyphicon-play" hm-tap="play3()"></button>
                             </div>
                             <div  class="col-xs-6">
-                                <span>Listen to the vowel in a sentence</span>
+                                <span>{{translation.LISTEN_TO_SENTENCE}}</span>
                             </div>
                         </div>
                     </div>
@@ -73,13 +85,13 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div ng-show="params.showPhonem">
-                                    <h5>Phonem: {{details.texts[0].text}}</h5>                                    
+                                    <h5>{{translation.PHONEM}}: {{details.texts[0].text}}</h5>
                                 </div>
                                 <div ng-show="params.showWord">
-                                    <h5>Word: {{details.texts[1].text}}</h5>
+                                    <h5>{{translation.WORD}}: {{details.texts[1].text}}</h5>
                                 </div>
                                 <div ng-show="params.showSentence">
-                                    <h5>Sentence: {{details.texts[1].text}}</h5>                                   
+                                    <h5>{{translation.SENTENCE}}: {{details.texts[2].text}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +101,6 @@
         </div>
     </div>
 </div>
-</div>
 <div ng-if="!tableId || !langId">
-<h3>wrong url params</h3>
+<h3>{{translation.WRONG_URL_PARAMS}}</h3>
 </div>

@@ -5,8 +5,7 @@ var mainApp = angular.module(
     'mainApp', 
     [
         'ngRoute',
-        'ui.bootstrap', 
-        'ui.bootstrap.progressbar', 
+        'ui.bootstrap',
         'services',
         'angular-gestures',
         'toggle-switch',                
@@ -15,15 +14,6 @@ var mainApp = angular.module(
         'errorApp'
     ]);
 
-// basic route provider is redirecting to home
-/*mainApp.config(['$routeProvider',
-    function($routeProvider) {
-        $routeProvider.
-        when('/:lang/:table', {
-            controller: 'MainCtrl'
-        });
-    }
-]);*/
 // FILTERS
 mainApp.filter('split', function() {
     return function(input, splitChar, splitIndex) {

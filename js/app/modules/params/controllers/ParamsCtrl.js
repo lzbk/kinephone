@@ -3,17 +3,20 @@
  *
  * @param {type} $scope scope
  */
-function ParamsCtrl($scope, $location, Data) {
-
+function ParamsCtrl($scope, $location, $timeout, Data) {
+    $scope.error = false;
+    $scope.success = false;
     $scope.$on('dataReady', mainReadyEvent);
+
     function mainReadyEvent() {
         // check if user is authenticated
-        if(!$scope.isAuthenticated){
+        if (!$scope.isAuthenticated) {
             redirect();
         }
     }
+
     function redirect() {
-        $location.path( $scope.langId + "/" + $scope.tableId + "/table");
+        $location.path($scope.langId + "/" + $scope.tableId + "/table");
         $location.replace();
     }
     $scope.update = function(params) {
@@ -23,12 +26,28 @@ function ParamsCtrl($scope, $location, Data) {
         }, onUpdateSuccess, onUpdateError);
     }
 
-    function onUpdateSuccess(data) {
-        console.log('param update success');
+    function onUpdateSuccess() {
+        $timeout(function() {
+            $scope.success = true;
+            $scope.error = false;
+            $scope.$apply();
+        }, 0);
+        $timeout(function() {
+            $scope.success = false;
+            $scope.$apply();
+        }, 3000);
     }
 
-    function onUpdateError(data) {
-        $location.path("/error/" + e.status);
-        $location.replace();
+    function onUpdateError() {
+        $timeout(function() {
+            $scope.success = false;
+            $scope.error = true;
+            $scope.$apply();
+        }, 0);
+        
+        $timeout(function() {
+            $scope.error = false;
+            $scope.$apply();
+        }, 3000);
     }
 }

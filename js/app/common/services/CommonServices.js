@@ -33,3 +33,14 @@ services.factory('Config', ['$resource', function($resource) {
         query: {method: 'GET', isArray: false}
     });
 }]);
+
+services.factory('Translation', ['$resource', function($resource){
+	return{
+		getTranslation : function($scope, language) {
+            var languageFilePath = 'translations/translation_' + language + '.json';
+            $resource(languageFilePath).get(function (data) {
+                $scope.translation = data;
+            });
+        }
+	};
+}]);

@@ -3,11 +3,12 @@
  *
  * @param {type} $scope scope
  */
-function TableCtrl($scope, $location, Data) {
+function TableCtrl($scope, $location, $timeout, Data) {
 
     $scope.data = {}; // all datas for the current language and table
     $scope.details = null; // details for the current item selected    
     $scope.sounds = new Array();
+    $scope.showDetails = false;
 
     $scope.init = function() {    
         $('img[usemap]').rwdImageMaps();
@@ -15,11 +16,8 @@ function TableCtrl($scope, $location, Data) {
         createAudioElements($scope.gender);
     };
 
-    // listen to main controller ready event
-    $scope.$on('dataReady', loadData);
-
-   
-
+    // listen to main controller events
+    $scope.$on('dataReady', loadData); 
     $scope.$on('reloadData', loadData)
 
     function loadData(){
@@ -54,7 +52,15 @@ function TableCtrl($scope, $location, Data) {
         $e.preventDefault();
         var id = $e.target.id;
         // get item details
-        $scope.details = getItemDetails(id);
+        $timeout(function() {   
+            $scope.details = getItemDetails(id);            
+            $scope.$apply();
+        }, 0);
+
+        $timeout(function(){
+            $scope.showDetails = true;
+            $scope.$apply();
+        },20);
     }
 
     $scope.play1 = function() {
@@ -66,6 +72,10 @@ function TableCtrl($scope, $location, Data) {
         var sound = getSound(parseInt($scope.details.id), $scope.gender, 'word');
         if(sound) sound.play();
     }  
+
+    $scope.showHidePanel = function(){
+        $scope.showDetails = !$scope.showDetails;
+    }
 
     function getItemDetails(id) {
         for (var index in $scope.data.items) {

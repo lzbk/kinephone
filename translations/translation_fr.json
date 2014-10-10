@@ -1,0 +1,46 @@
+{  
+
+    "WELCOME" : "Bienvenue",
+    "PASSWORD" : "Mot de passe",
+    "LOGIN" : "Identifiant",
+    "PARAMETERS" : "Paramètres",
+    "SIGNIN" : "Se connecter",
+    "SIGNOUT" : "Se deconnecter",
+    "RELOAD" : "Charger",
+    "LANGUAGE" : "Langue",
+    "TABLE" : "Table",
+    "CHOOSE_GENDER":"Choisir le genre",
+
+    "SHOW_DRAWING":"Montrer les dessins",
+    "SHOW_COLOR":"Montrer les couleurs",
+    "SHOW_PHONEM_TEXT":"Montrer le texte du phonème",
+    "SHOW_WORD_TEXT":"Montrer le texte du mot",
+    "SHOW_SENTENCE_TEXT":"Montrer le texte de la phrase",
+    "SHOW_PHONEM_SOUND":"Montrer le son du phonème",
+    "SHOW_WORD_SOUND":"Montrer le son du mot",
+    "SHOW_SENTENCE_SOUND":"Montrer le son de la phrase",
+    "SAVE_PARAMETERS":"Sauvegarder les paramètres",
+    "WRONG_URL_PARAMS":"Mauvais paramètres dans l'url",
+
+    "TAP_EXPLAIN":"Tapez (= click court) sur un rectangle pour entendre le son de la voyelle",
+    "PRESS_EXPLAIN":"Pressez (= click long) sur un rectangle pour voir les détails",
+
+    "LISTEN_TO_VOWEL":"Ecouter la voyelle",
+    "LISTEN_TO_WORD":"Ecouter la voyelle dans un mot",
+    "LISTEN_TO_SENTENCE":"Ecouter la voyelle dans une phrase",
+
+    "PHONEM":"Phonème",
+    "WORD":"Mot",
+    "SENTENCE":"Phrase",
+    "HELP":"Aide",
+    "NO_DETAILS":"Veuillez cliquer sur un rectangle pour voir les détails",
+    "HIDE_SHOW_DETAILS": " Afficher / Masquer les détails",
+
+
+    "YES": "Oui",
+    "NO":"Non",
+
+    
+    "PARAM_UPDATE_SUCCESS":"Parameters update succecssful!",
+    "PARAM_UPDATE_ERROR":"An error occured while updating the parameters. Please contact your support team."
+}
