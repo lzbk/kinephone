@@ -1,12 +1,15 @@
-<div ng-if="tableId && langId">
+<div data-ng-if="tableId && langId">
     <!-- Page Content -->
     <div class="row">
         <!-- big image -->
         <div class="col-xs-9 text-center">
             <div class="big-img-wrapper">
-                <img id="big-image" ng-src="{{data.image}}" class="img-responsive" hm-hold="toggleConfigPanel()" usemap="#map" >
+                <img id="big-image" data-ng-src="{{data.image}}" class="img-responsive" data-hm-hold="toggleConfigPanel()" usemap="#map" >
                 <map id="big-image-map" name="map">
-                <area shape="rect" ng-repeat="item in data.items" id="{{item.id}}" hm-tap="playVowel($event)" hm-hold="showItemDetails($event)" coords="{{item.coords}}"/>
+                <!--
+                <area shape="rect" data-ng-repeat="item in data.items" id="{{item.id}}" data-hm-tap="playVowel($event)" data-hm-hold="showItemDetails($event)" coords="{{item.coords}}"/>
+-->
+                <area shape="rect" data-ng-repeat="item in data.items" id="{{item.id}}" coords="{{item.coords}}" data-hm-tap="handleTap($event)" data-hm-hold="handleHold($event)"/>
                 </map>
             </div>
         </div>
@@ -16,12 +19,12 @@
                 <!-- Toggle details button -->
                 <div class="row">
                     <div class="col-xs-12">
-                        <button ng-class="showDetails ? 'btn btn-default fa fa-chevron-circle-up pull-right':'btn btn-default fa fa-chevron-circle-down pull-right'" ng-click="showHidePanel()" ng-model="showDetails" tooltip="{{translation.HIDE_SHOW_DETAILS}}" tooltip-placement="left"></button> 
+                        <button data-ng-class="showDetails ? 'btn btn-default fa fa-chevron-circle-up pull-right':'btn btn-default fa fa-chevron-circle-down pull-right'" data-ng-click="showHidePanel()" data-ng-model="showDetails" data-tooltip="{{translation.HIDE_SHOW_DETAILS}}" data-tooltip-placement="left"></button> 
                     </div>
                 </div>
                
                 <!-- No details -->
-                <div ng-show="!details && showDetails">
+                <div data-ng-show="!details && showDetails">
                      <hr/>
                     <div class="row">
                         <div class="col-xs-12">
@@ -29,21 +32,21 @@
                         </div>
                     </div>
                 </div>
-                <div ng-show="details && showDetails">
+                <div data-ng-show="details && showDetails">
                  <hr/>
                     <!-- images row -->
-                    <div ng-if="params.showColor || params.showImage">
+                    <div data-ng-if="params.showColor || params.showImage">
                         <div class="row">
                             <!-- COLOR -->
-                            <div ng-show="params.showColor" ng-class="params.showImage ? 'col-xs-6':'col-xs-12'"  class="text-center">
+                            <div data-ng-show="params.showColor" data-ng-class="params.showImage ? 'col-xs-6':'col-xs-12'"  class="text-center">
                                 <div class="detail-img-container">
-                                    <img id="img-1" ng-src="{{details.images[0].url}}">
+                                    <img id="img-1" data-ng-src="{{details.images[0].url}}">
                                 </div>
                             </div>
                             <!-- DRAWING -->
-                            <div ng-show="params.showImage" ng-class="params.showColor ? 'col-xs-6':'col-xs-12'" class="text-center">
+                            <div data-ng-show="params.showImage" data-ng-class="params.showColor ? 'col-xs-6':'col-xs-12'" class="text-center">
                                 <div class="detail-img-container">
-                                    <img id="img-2" ng-src="{{details.images[1].url}}">
+                                    <img id="img-2" data-ng-src="{{details.images[1].url}}">
                                 </div>
                             </div>
                         </div>
@@ -51,28 +54,28 @@
                     </div>
                     <!-- sounds row -->
                     <!-- if no controls are set, audio player will not show -->
-                    <div ng-if="params.showPhonemSound || params.showWordSound || params.showSentenceSound">
-                        <div ng-show="params.showPhonemSound" class="row">
+                    <div data-ng-if="params.showPhonemSound || params.showWordSound || params.showSentenceSound">
+                        <div data-ng-show="params.showPhonemSound" class="row">
                             <div class="col-xs-6">
-                                <button class="glyphicon glyphicon-play" hm-tap="play1()"></button>
+                                <button class="glyphicon glyphicon-play" data-hm-tap="play1()"></button>
                             </div>
                             <div class="col-xs-6">
                                 <span>{{translation.LISTEN_TO_VOWEL}}</span>
                             </div>
                         </div>
                         <hr/>
-                        <div ng-show="params.showWordSound" class="row">
+                        <div data-ng-show="params.showWordSound" class="row">
                             <div class="col-xs-6">
-                                <button class="glyphicon glyphicon-play" hm-tap="play2()"></button>
+                                <button class="glyphicon glyphicon-play" data-hm-tap="play2()"></button>
                             </div>
                             <div  class="col-xs-6">
                                 <span>{{translation.LISTEN_TO_WORD}}</span>
                             </div>
                         </div>
                         <hr/>
-                        <div ng-show="params.showSentenceSound" class="row">
+                        <div data-ng-show="params.showSentenceSound" class="row">
                             <div class="col-xs-6">
-                                <button class="glyphicon glyphicon-play" hm-tap="play3()"></button>
+                                <button class="glyphicon glyphicon-play" data-hm-tap="play3()"></button>
                             </div>
                             <div  class="col-xs-6">
                                 <span>{{translation.LISTEN_TO_SENTENCE}}</span>
@@ -81,16 +84,16 @@
                     </div>
                     <hr/>
                     <!-- texts row -->
-                    <div ng-if="params.showPhonem || params.showWord || params.showSentence">
+                    <div data-ng-if="params.showPhonem || params.showWord || params.showSentence">
                         <div class="row">
                             <div class="col-xs-12">
-                                <div ng-show="params.showPhonem">
-                                    <h5>{{translation.PHONEM}}: {{details.texts[0].text}}</h5>
+                                <div data-ng-show="params.showPhonem">
+                                    <h5>{{translation.WORD}}: {{details.texts[0].text}}</h5>
                                 </div>
-                                <div ng-show="params.showWord">
-                                    <h5>{{translation.WORD}}: {{details.texts[1].text}}</h5>
+                                <div data-ng-show="params.showWord">
+                                    <h5>{{translation.PHONEM}}: /<span data-ng-bind-html="details.texts[1].text"></span>/</h5>
                                 </div>
-                                <div ng-show="params.showSentence">
+                                <div data-ng-show="params.showSentence">
                                     <h5>{{translation.SENTENCE}}: {{details.texts[2].text}}</h5>
                                 </div>
                             </div>
@@ -101,6 +104,6 @@
         </div>
     </div>
 </div>
-<div ng-if="!tableId || !langId">
+<div data-ng-if="!tableId || !langId">
 <h3>{{translation.WRONG_URL_PARAMS}}</h3>
 </div>

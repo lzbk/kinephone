@@ -12,6 +12,7 @@ function MainCtrl($scope, $timeout, $location, $filter, $routeParams, $modal, Da
     $scope.tableId = null; // current table id
     $scope.isAuthenticated = false; // is user authenticated ?
     $scope.gender = 'male'; // default gender
+    $scope.isSilentWay = false; // silent way means that when you tap on an item you won't here the sound but see details
     $scope.login = '';
     $scope.pass = '';
     $scope.currentLanguage = {}; // current language
@@ -107,6 +108,9 @@ function MainCtrl($scope, $timeout, $location, $filter, $routeParams, $modal, Da
     }
     $scope.genderChanged = function(value) {
         $scope.gender = value || 'male';
+    }
+    $scope.eventModeChange = function(){
+        $scope.isSilentWay = !$scope.isSilentWay;
     }
     $scope.signIn = function() {
         if ($scope.login == $scope.config.user_config.login && $scope.pass == $scope.config.user_config.pass) {

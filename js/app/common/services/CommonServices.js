@@ -4,8 +4,8 @@
 var services = angular.module('services', ['ngResource']);
 
 
-var apiUrl = 'http://dev.innovalangues.net/kinephone-api/web/index.php/kinephones/';
-//var apiUrl = 'http://localhost/innova/kinephone-api/web/index.php/kinephones/';
+//var apiUrl = 'http://dev.innovalangues.net/kinephone-api/web/index.php/kinephones/';
+var apiUrl = 'http://localhost/innova/kinephone-api/web/index.php/kinephones/';
 services.value('version', '1.1');
 
 services.factory('Data',['$resource', function($resource){

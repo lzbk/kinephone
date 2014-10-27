@@ -21,6 +21,7 @@
         <script type="text/javascript" src="js/libs/angular/angular.min.js"></script>
         <script type="text/javascript" src="js/libs/angular/angular-route.min.js"></script>
         <script type="text/javascript" src="js/libs/angular/angular-resource.min.js"></script>
+        <script type="text/javascript" src="js/libs/angular/angular-sanitize.js"></script>
         <script type="text/javascript" src="js/libs/angular-ui-bootstrap.min.js"></script>
         <script type="text/javascript" src="js/libs/gesture.js"></script>
         <script type="text/javascript" src="js/libs/angular-toggle-switch.min.js"></script>
@@ -64,52 +65,62 @@
                             <form class="navbar-form navbar-left">
                                 <div class="form-group">
                                     <label class="sr-only" for="{{translation.LANGUAGE}}">{{translation.LANGUAGE}}</label>
-                                    <select class="form-control" ng-model="currentLanguage" ng-options="language as language.language_name for language in languages track by language.language_id" ng-change="onLanguageChange(currentLanguage)">
+                                    <select class="form-control" data-ng-model="currentLanguage" data-ng-options="language as language.language_name for language in languages track by language.language_id" data-ng-change="onLanguageChange(currentLanguage)">
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="{{translation.TABLE}}">{{translation.TABLE}}</label>
-                                    <select class="form-control" ng-model="currentTable" ng-options="table as table.table_name for table in tables track by table.table_id" ng-change="onTableChange(currentTable)">
+                                    <select class="form-control" data-ng-model="currentTable" data-ng-options="table as table.table_name for table in tables track by table.table_id" data-ng-change="onTableChange(currentTable)">
                                     </select>
                                 </div>
-                                <button type="button" ng-click="reloadData()" tooltip="{{translation.RELOAD}}" tooltip-placement="bottom" class="btn btn-default fa fa-refresh"></button>
+                                <button type="button" data-ng-click="reloadData()" tooltip="{{translation.RELOAD}}" tooltip-placement="bottom" class="btn btn-default fa fa-refresh"></button>
                             </form>
+                            <!-- GENDER -->
                             <div class="navbar-form navbar-left play-mode-buttons btn-group">
-                                <button ng-class="gender === 'male' ? 'btn btn-default active':'btn btn-default'" tooltip="{{translation.CHOOSE_GENDER}}" tooltip-placement="bottom" ng-model="gender" hm-tap="genderChanged('male')">
+                                <button data-ng-class="gender === 'male' ? 'btn btn-default active':'btn btn-default'" data-tooltip="{{translation.CHOOSE_GENDER}}" tooltip-placement="bottom" data-ng-model="gender" data-hm-tap="genderChanged('male')">
                                 <i class="fa fa-male"></i>
                                 </button>
-                                <button ng-class="gender === 'female' ? 'btn btn-default active':'btn btn-default'" tooltip="{{translation.CHOOSE_GENDER}}" tooltip-placement="bottom"  ng-model="gender" hm-tap="genderChanged('female')">
-                                <i class="fa fa-female"></i>
+                                <button data-ng-class="gender === 'female' ? 'btn btn-default active':'btn btn-default'" data-tooltip="{{translation.CHOOSE_GENDER}}" data-tooltip-placement="bottom"  data-ng-model="gender" data-hm-tap="genderChanged('female')">
+                                <i class="fa fa-male"></i>
                                 </button>
                             </div>
-                            <ul class="nav navbar-nav" ng-show="isAuthenticated">
+                            <!-- SILENT WAY OR NOT -->
+                             <div class="navbar-form navbar-left play-mode-buttons btn-group">
+                                <button data-ng-class="isSilentWay ? 'btn btn-default active':'btn btn-default'" data-tooltip="{{translation.SILENTWAY}}" tooltip-placement="bottom" data-ng-model="isSilentWay" data-hm-tap="eventModeChange()">
+                                <i class="fa fa-volume-off"></i>
+                                </button>
+                                <button data-ng-class="!isSilentWay ? 'btn btn-default active':'btn btn-default'" data-tooltip="{{translation.SILENTWAY_NO}}" data-tooltip-placement="bottom"  data-ng-model="isSilentWay" data-hm-tap="eventModeChange()">
+                                <i class="fa fa-volume-up"></i>
+                                </button>
+                            </div>
+                            <ul class="nav navbar-nav" data-ng-show="isAuthenticated">
                                 <li><a href="#/{{langId}}/{{tableId}}/params" class="fa fa-gear" tooltip="{{translation.PARAMETERS}}" tooltip-placement="bottom"></a></li>
                             </ul>
-                            <form class="navbar-form navbar-left" name="authentication" ng-show="!isAuthenticated">
+                            <form class="navbar-form navbar-left" name="authentication" data-ng-show="!isAuthenticated">
                                 <div class="form-group">
                                     <label class="sr-only" for="{{translation.LOGIN}}">{{translation.LOGIN}}</label>
-                                    <input type="text" class="form-control" placeholder="{{translation.LOGIN}}" ng-model="login">
+                                    <input type="text" class="form-control" placeholder="{{translation.LOGIN}}" data-ng-model="login">
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="{{translation.PASSWORD}}">{{translation.PASSWORD}}</label>
-                                    <input type="password" class="form-control" placeholder="{{translation.PASSWORD}}" ng-model="pass">
+                                    <input type="password" class="form-control" placeholder="{{translation.PASSWORD}}" data-ng-model="pass">
                                 </div>
-                                <button type="button" ng-click="signIn()" tooltip="{{translation.SIGNIN}}" tooltip-placement="bottom" class="btn btn-default fa fa-sign-in"></button>
+                                <button type="button" data-ng-click="signIn()" data-tooltip="{{translation.SIGNIN}}" data-tooltip-placement="bottom" class="btn btn-default fa fa-sign-in"></button>
                             </form>
                             <div class="navbar-form navbar-left" ng-show="isAuthenticated">
                                 <span>{{translation.WELCOME}} {{login}} </span>
-                                <button type="button" class="btn btn-default" ng-click="signOut()" tooltip="{{translation.SIGNOUT}}" tooltip-placement="bottom">
+                                <button type="button" class="btn btn-default" data-ng-click="signOut()" data-tooltip="{{translation.SIGNOUT}}" data-tooltip-placement="bottom">
                                 <i class="fa fa-sign-out"></i> 
                                 </button>
                             </div>
                             <div class="navbar-form navbar-right btn-group">
-                                <button class="btn btn-default fa fa-question-circle" tooltip="{{translation.HELP}}" tooltip-placement="left"  hm-tap="openHelp()"></button>
+                                <button class="btn btn-default fa fa-question-circle" data-tooltip="{{translation.HELP}}" data-tooltip-placement="left"  data-hm-tap="openHelp()"></button>
                             </div>
                         </div>
                     </div>
                 </nav>
                 <!-- VIEWS -->
-                <div ng-view>
+                <div data-ng-view>
                 </div>
             </div>
         </div>

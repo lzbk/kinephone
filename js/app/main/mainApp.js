@@ -5,6 +5,7 @@ var mainApp = angular.module(
     'mainApp', 
     [
         'ngRoute',
+        'ngSanitize',
         'ui.bootstrap',
         'services',
         'angular-gestures',

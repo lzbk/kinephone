@@ -10,6 +10,8 @@
     "LANGUAGE" : "Langue",
     "TABLE" : "Table",
     "CHOOSE_GENDER":"Choisir le genre",
+    "SILENTWAY":"Afficher les détails lors du click sur un item",
+    "SILENTWAY_NO":"Entendre le son lors du click sur un item",
 
     "SHOW_DRAWING":"Montrer les dessins",
     "SHOW_COLOR":"Montrer les couleurs",

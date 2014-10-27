@@ -10,6 +10,8 @@ function TableCtrl($scope, $location, $timeout, Data) {
     $scope.sounds = new Array();
     $scope.showDetails = false;
 
+    var hammer = null;
+
     $scope.init = function() {    
         $('img[usemap]').rwdImageMaps();
         // create an html5 audio object for each sound related to each item
@@ -18,7 +20,25 @@ function TableCtrl($scope, $location, $timeout, Data) {
 
     // listen to main controller events
     $scope.$on('dataReady', loadData); 
-    $scope.$on('reloadData', loadData)
+    $scope.$on('reloadData', loadData);
+
+    $scope.handleTap = function($event){
+        if(!$scope.isSilentWay){
+            playVowel($event);                
+        }
+        else{               
+            showItemDetails($event);
+        }
+    }
+
+     $scope.handleHold = function($event){
+        if(!$scope.isSilentWay){
+            showItemDetails($event);                
+        }
+        else{               
+            playVowel($event);
+        }
+    }
 
     function loadData(){
         Data.items.query({
@@ -28,10 +48,11 @@ function TableCtrl($scope, $location, $timeout, Data) {
     }
 
     function onItemsSuccess(e) {
-        window.setTimeout(function() {
+        $timeout(function() {
             $scope.data = e;
             $scope.$apply();
-            $scope.init();       
+            $scope.init();
+            $scope.showDetails = false; 
         }, 0);
     }
 
@@ -41,16 +62,16 @@ function TableCtrl($scope, $location, $timeout, Data) {
     }
 
     // tap on table rectangle
-    $scope.playVowel = function(e){
+    function playVowel (e){
         var id = e.target.id;
         var sound = getSound(parseInt(id), $scope.gender, 'phonem');
         if(sound) sound.play();
     }
 
     // press (long click) on table rectangle
-    $scope.showItemDetails = function($e) {
-        $e.preventDefault();
-        var id = $e.target.id;
+    function showItemDetails (e) {
+        //e.preventDefault();
+        var id = e.target.id;
         // get item details
         $timeout(function() {   
             $scope.details = getItemDetails(id);            
@@ -65,6 +86,7 @@ function TableCtrl($scope, $location, $timeout, Data) {
 
     $scope.play1 = function() {
         var sound = getSound(parseInt($scope.details.id), $scope.gender, 'phonem');
+        console.log(sound);
         if(sound) sound.play();
     }
 
