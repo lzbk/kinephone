@@ -1,3 +1,5 @@
+
+
 'use strict';
 /**
  *
@@ -17,9 +19,23 @@ function MainCtrl($scope, $timeout, $location, $filter, $routeParams, $modal, Da
     $scope.pass = '';
     $scope.currentLanguage = {}; // current language
     $scope.currentTable = {};
+
+    // open wait modal while retrieving data. Will be closed by tableApp...
+    $scope.waitModalInstance;
+    function showPleaseWaitModal() {        
+        $scope.waitModalInstance = $modal.open({
+            templateUrl: 'js/app/common/modals/partials/waitModal.html',
+            controller: 'WaitModalCtrl',
+            scope: $scope,
+            backdrop : 'static'
+        });
+    }
+    showPleaseWaitModal();
+
+
     // get translation service
     Translation.getTranslation($scope, 'fr');
-    // here it is not possible to use directly $routeParams
+    // here it is not possible to use $routeParams
     $scope.$on('$routeChangeSuccess', function(event, current, previous) {
         // current is the current route
         // previous is the previous route
@@ -98,7 +114,7 @@ function MainCtrl($scope, $timeout, $location, $filter, $routeParams, $modal, Da
         $timeout(function() {
             $scope.params = e;
             $scope.$apply();
-            $scope.$broadcast('dataReady');
+            $scope.$broadcast('mainDataReady');
         });
     }
 
@@ -139,6 +155,7 @@ function MainCtrl($scope, $timeout, $location, $filter, $routeParams, $modal, Da
         }, 0);
     }
     $scope.reloadData = function() {
+        showPleaseWaitModal();
         $timeout(function() {
             $scope.$broadcast('reloadData', {
                 lang: $scope.langId,

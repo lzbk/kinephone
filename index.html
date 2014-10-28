@@ -9,6 +9,8 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="css/angular-toggle-switch-bootstrap-3.css" rel="stylesheet">
+        <link href="css/angular-spinkit.min.css" rel="stylesheet">
+
         <!-- MY -->
         <link rel="stylesheet" href="css/style.css">
         <!-- JS -->
@@ -25,14 +27,17 @@
         <script type="text/javascript" src="js/libs/angular-ui-bootstrap.min.js"></script>
         <script type="text/javascript" src="js/libs/gesture.js"></script>
         <script type="text/javascript" src="js/libs/angular-toggle-switch.min.js"></script>
-        <!-- common services -->
+        <script type="text/javascript" src="js/libs/angular-spinkit.min.js"></script>
+        <!-- common services / modals -->
         <script src="js/app/common/services/CommonServices.js"></script>
+        <script src="js/app/common/modals/controllers/HelpModalCtrl.js"></script>
+         <script src="js/app/common/modals/controllers/WaitModalCtrl.js"></script>
         <!-- angular app & modules -->
         <script src="js/app/main/factory/MainFactory.js"></script>
         <script src="js/app/common/factories/UtilsFactory.js"></script>
         <!-- main -->
         <script src="js/app/main/controllers/MainCtrl.js"></script>
-         <script src="js/app/main/controllers/HelpModalCtrl.js"></script>
+        <!-- <script src="js/app/main/controllers/HelpModalCtrl.js"></script> -->
         <script src="js/app/main/mainApp.js"></script>
         <!-- table -->
         <script src="js/app/modules/table/tableApp.js"></script>
@@ -61,7 +66,7 @@
                         </div>
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="navbar-collapse">
-                            <!-- Language and table form -->
+                            <!-- CHOOSE LANGUAGE & TABLE -->
                             <form class="navbar-form navbar-left">
                                 <div class="form-group">
                                     <label class="sr-only" for="{{translation.LANGUAGE}}">{{translation.LANGUAGE}}</label>
@@ -75,7 +80,7 @@
                                 </div>
                                 <button type="button" data-ng-click="reloadData()" tooltip="{{translation.RELOAD}}" tooltip-placement="bottom" class="btn btn-default fa fa-refresh"></button>
                             </form>
-                            <!-- GENDER -->
+                            <!-- SET GENDER -->
                             <div class="navbar-form navbar-left play-mode-buttons btn-group">
                                 <button data-ng-class="gender === 'male' ? 'btn btn-default active':'btn btn-default'" data-tooltip="{{translation.CHOOSE_GENDER}}" tooltip-placement="bottom" data-ng-model="gender" data-hm-tap="genderChanged('male')">
                                 <i class="fa fa-male"></i>
@@ -84,8 +89,8 @@
                                 <i class="fa fa-male"></i>
                                 </button>
                             </div>
-                            <!-- SILENT WAY OR NOT -->
-                             <div class="navbar-form navbar-left play-mode-buttons btn-group">
+                            <!-- SET SILENT WAY OR NOT -->
+                            <div class="navbar-form navbar-left play-mode-buttons btn-group">
                                 <button data-ng-class="isSilentWay ? 'btn btn-default active':'btn btn-default'" data-tooltip="{{translation.SILENTWAY}}" tooltip-placement="bottom" data-ng-model="isSilentWay" data-hm-tap="eventModeChange()">
                                 <i class="fa fa-volume-off"></i>
                                 </button>
@@ -93,9 +98,11 @@
                                 <i class="fa fa-volume-up"></i>
                                 </button>
                             </div>
+                            <!-- TABLE PARAMs ICON (only if authenticated) -->
                             <ul class="nav navbar-nav" data-ng-show="isAuthenticated">
                                 <li><a href="#/{{langId}}/{{tableId}}/params" class="fa fa-gear" tooltip="{{translation.PARAMETERS}}" tooltip-placement="bottom"></a></li>
                             </ul>
+                            <!-- LOGIN FORM -->
                             <form class="navbar-form navbar-left" name="authentication" data-ng-show="!isAuthenticated">
                                 <div class="form-group">
                                     <label class="sr-only" for="{{translation.LOGIN}}">{{translation.LOGIN}}</label>
@@ -115,7 +122,8 @@
                             </div>
                             <div class="navbar-form navbar-right btn-group">
                                 <button class="btn btn-default fa fa-question-circle" data-tooltip="{{translation.HELP}}" data-tooltip-placement="left"  data-hm-tap="openHelp()"></button>
-                            </div>
+                            </div>      
+                                             
                         </div>
                     </div>
                 </nav>

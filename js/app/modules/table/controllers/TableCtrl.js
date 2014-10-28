@@ -3,26 +3,26 @@
  *
  * @param {type} $scope scope
  */
-function TableCtrl($scope, $location, $timeout, Data) {
+function TableCtrl($scope, $location, $modal, $timeout, Data) {
 
     $scope.data = {}; // all datas for the current language and table
     $scope.details = null; // details for the current item selected    
     $scope.sounds = new Array();
     $scope.showDetails = false;
-
-    var hammer = null;
+    $scope.isLoading = true;
+    
 
     $scope.init = function() {    
         $('img[usemap]').rwdImageMaps();
         // create an html5 audio object for each sound related to each item
-        createAudioElements($scope.gender);
+        createAudioElements($scope.gender); 
     };
 
     // listen to main controller events
-    $scope.$on('dataReady', loadData); 
-    $scope.$on('reloadData', loadData);
+    $scope.$on('mainDataReady', loadTableData); 
+    $scope.$on('reloadData', loadTableData);
 
-    $scope.handleTap = function($event){
+    $scope.handleAreaTapEvent = function($event){
         if(!$scope.isSilentWay){
             playVowel($event);                
         }
@@ -31,7 +31,7 @@ function TableCtrl($scope, $location, $timeout, Data) {
         }
     }
 
-     $scope.handleHold = function($event){
+    $scope.handleAreaHoldEvent = function($event){
         if(!$scope.isSilentWay){
             showItemDetails($event);                
         }
@@ -40,7 +40,8 @@ function TableCtrl($scope, $location, $timeout, Data) {
         }
     }
 
-    function loadData(){
+    function loadTableData(){
+        //showPleaseWaitModal();
         Data.items.query({
             lid: $scope.langId,
             tid: $scope.tableId
@@ -49,11 +50,12 @@ function TableCtrl($scope, $location, $timeout, Data) {
 
     function onItemsSuccess(e) {
         $timeout(function() {
-            $scope.data = e;
+            $scope.data = e;            
+            $scope.showDetails = false;            
             $scope.$apply();
             $scope.init();
-            $scope.showDetails = false; 
         }, 0);
+
     }
 
     function onDataError(e) {
@@ -70,7 +72,6 @@ function TableCtrl($scope, $location, $timeout, Data) {
 
     // press (long click) on table rectangle
     function showItemDetails (e) {
-        //e.preventDefault();
         var id = e.target.id;
         // get item details
         $timeout(function() {   
@@ -124,5 +125,11 @@ function TableCtrl($scope, $location, $timeout, Data) {
                 $scope.sounds.push(data);
             }
         }
+        hidePleaseWaitModal();
+    }
+
+
+    function hidePleaseWaitModal(){
+        $scope.waitModalInstance.close();
     }
 }

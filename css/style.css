@@ -107,3 +107,9 @@ audio{
     position:absolute;
     z-index: 99999999999;
 }
+
+.wave-spinner{
+    margin:0 auto;
+    padding-top:5px;
+    line-height: 50px;
+}

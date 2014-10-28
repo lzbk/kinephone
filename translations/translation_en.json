@@ -35,5 +35,6 @@
     "PARAM_UPDATE_SUCCESS":"Parameters update succecssful!",
     "PARAM_UPDATE_ERROR":"An error occured while updating the parameters. Please contact your support team.",
     "SILENTWAY":"See details when item clicked but don't here the sound",
-    "SILENTWAY_NO":"Here sound when item clicked but don't see details"
+    "SILENTWAY_NO":"Here sound when item clicked but don't see details",
+    "WAIT":"Please wait while retrieving data"
 }
