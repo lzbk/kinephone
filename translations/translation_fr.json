@@ -27,9 +27,9 @@
     "TAP_EXPLAIN":"Tapez (= click court) sur un rectangle pour entendre le son de la voyelle",
     "PRESS_EXPLAIN":"Pressez (= click long) sur un rectangle pour voir les détails",
 
-    "LISTEN_TO_VOWEL":"Ecouter la voyelle",
-    "LISTEN_TO_WORD":"Ecouter la voyelle dans un mot",
-    "LISTEN_TO_SENTENCE":"Ecouter la voyelle dans une phrase",
+    "LISTEN_TO_PHONEM":"Ecouter le phonème",
+    "LISTEN_TO_WORD":"Ecouter le phonème dans un mot",
+    "LISTEN_TO_SENTENCE":"Ecouter le phonème dans une phrase",
 
     "PHONEM":"Phonème",
     "WORD":"Mot",

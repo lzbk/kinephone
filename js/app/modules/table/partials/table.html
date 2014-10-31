@@ -4,9 +4,9 @@
         <!-- big image -->
         <div class="col-xs-9 text-center">
             <div class="big-img-wrapper">
-                <img id="big-image" data-ng-src="{{data.image}}" class="img-responsive" data-hm-hold="toggleConfigPanel()" usemap="#map" >
+                <img id="big-image" data-ng-src="{{tableData.image}}" class="img-responsive" data-hm-hold="toggleConfigPanel()" usemap="#map" >
                 <map id="big-image-map" name="map">
-                <area shape="rect" data-ng-repeat="item in data.items" id="{{item.id}}" coords="{{item.coords}}" data-hm-tap="handleAreaTapEvent($event)" data-hm-hold="handleAreaHoldEvent($event)"/>
+                <area shape="rect" data-ng-repeat="item in tableData.items" id="{{item.id}}" coords="{{item.coords}}" data-hm-tap="handleAreaTapEvent($event)" data-hm-hold="handleAreaHoldEvent($event)"/>
                 </map>
             </div>
         </div>
@@ -15,11 +15,7 @@
             <div class="details-wrapper">
                 <!-- Toggle details button -->
                 <div class="row">
-                    <div class="col-xs-12">
-                        <!-- LOADING GIF -->
-                        <ul class="nav navbar-nav" data-ng-show="!isLoading">
-                            <li> <wave-spinner></wave-spinner></li>
-                        </ul>
+                    <div class="col-xs-12">                       
                         <button data-ng-class="showDetails ? 'btn btn-default fa fa-chevron-circle-up pull-right':'btn btn-default fa fa-chevron-circle-down pull-right'" data-ng-click="showHidePanel()" data-ng-model="showDetails" data-tooltip="{{translation.HIDE_SHOW_DETAILS}}" data-tooltip-placement="left"></button>
                     </div>
                 </div>
@@ -54,22 +50,22 @@
                     </div>
                     <!-- sounds row -->
                     <!-- if no controls are set, audio player will not show -->
-                    <div data-ng-if="params.showPhonemSound || params.showWordSound || params.showSentenceSound">
-                        <div data-ng-show="params.showPhonemSound" class="row">
-                            <div class="col-xs-6">
-                                <button class="glyphicon glyphicon-play" data-hm-tap="play1()"></button>
-                            </div>
-                            <div class="col-xs-6">
-                                <span>{{translation.LISTEN_TO_VOWEL}}</span>
-                            </div>
-                        </div>
-                        <hr/>
+                    <div data-ng-if="params.showPhonemSound || params.showWordSound || params.showSentenceSound">                        
                         <div data-ng-show="params.showWordSound" class="row">
                             <div class="col-xs-6">
                                 <button class="glyphicon glyphicon-play" data-hm-tap="play2()"></button>
                             </div>
                             <div  class="col-xs-6">
                                 <span>{{translation.LISTEN_TO_WORD}}</span>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div data-ng-show="params.showPhonemSound" class="row">
+                            <div class="col-xs-6">
+                                <button class="glyphicon glyphicon-play" data-hm-tap="play1()"></button>
+                            </div>
+                            <div class="col-xs-6">
+                                <span>{{translation.LISTEN_TO_PHONEM}}</span>
                             </div>
                         </div>
                         <hr/>

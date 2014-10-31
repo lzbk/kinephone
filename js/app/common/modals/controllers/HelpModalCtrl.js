@@ -1,8 +1,16 @@
-'use strict';
+(function () {
+    'use strict';
 
-function HelpModalCtrl($scope, $modalInstance) {
+    angular.module('common').controller('HelpModalCtrl', [
+        '$scope',
+        '$modalInstance',
+        function ($scope, $modalInstance) {
+            $scope.close = function () {
+                $modalInstance.dismiss('cancel');
+            };
+        }
+    ]);
 
-    $scope.close = function() {
-        $modalInstance.dismiss('cancel');
-    };
-}
+
+
+})();

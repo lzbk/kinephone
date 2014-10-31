@@ -1,8 +1,11 @@
 (function() {
     'use strict';
-    var tableApp = angular.module('tableApp', ['angular-gestures', 'errorApp']);
+    angular.module('table', [
+        'angular-gestures', 
+        'error'
+    ])   
     // routes for the module
-    tableApp.config(['$routeProvider',
+    .config(['$routeProvider',
         function($routeProvider) {
             $routeProvider.when('/:lang/:table/table', {
                 templateUrl: 'js/app/modules/table/partials/table.html',
