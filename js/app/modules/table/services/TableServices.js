@@ -2,8 +2,8 @@
 
     'use strict';
 
-    //var apiUrl = 'http://dev.innovalangues.net/kinephone-api/web/index.php/kinephones/';
-    var apiUrl = 'http://localhost/innova/kinephone-api/web/index.php/kinephones/';
+    var apiUrl = 'http://dev.innovalangues.net/kinephone-api/web/index.php/kinephones/';
+    //var apiUrl = 'http://localhost/innova/kinephone-api/web/index.php/kinephones/';
 
     angular.module('table').factory('TableDataService', [
         '$resource',

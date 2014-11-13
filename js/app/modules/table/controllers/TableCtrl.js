@@ -94,6 +94,12 @@
                 if (sound)
                     sound.play();
             };
+            $scope.play3 = function () {
+                var sound = getSound(parseInt($scope.details.id), $scope.gender, 'sentence');
+                if (sound)
+                    sound.play();
+            };
+
             $scope.showHidePanel = function () {
                 $scope.showDetails = !$scope.showDetails;
             };
