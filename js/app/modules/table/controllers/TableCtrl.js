@@ -60,6 +60,7 @@
                 // have to use this ($apply and $timeout)... or image map will be very strange and not always updated 
                 $timeout(function () {
                     $scope.tableData = e;
+                    console.log(e);
                     $scope.showDetails = false;
                     $scope.$apply();
                     $scope.init();
