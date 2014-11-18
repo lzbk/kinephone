@@ -17,9 +17,9 @@
     <!-- Params table -->
     <div class="row">
         <div class="col-md-12">
-            <table class="table">
+            <table class="table">            
                 <tbody>
-                    <tr>
+                    <tr data-ng-show="langId != 3">
                         <td>{{translation.SHOW_DRAWING}}</td>
                         <td><toggle-switch model="params.showImage" on-label="{{translation.YES}}" off-label="{{translation.NO}}"><toggle-switch></td>
                     </tr>

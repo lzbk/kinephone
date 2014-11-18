@@ -1,11 +1,8 @@
 (function () {
     'use strict';
-    //var apiUrl = 'http://dev.innovalangues.net/kinephone-api/web/index.php/kinephones/';
-    var apiUrl = 'http://localhost/innova/kinephone-api/web/index.php/kinephones/';
-
     angular.module('main').factory('MainServices', [
-        '$resource',
-        function ($resource) {
+        '$resource', 'apiUrl',
+        function ($resource, apiUrl) {
             return {
                 languages: $resource(apiUrl + 'languages', {}, {
                     query: {method: 'GET', isArray: true} // get all available languages

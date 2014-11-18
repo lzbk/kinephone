@@ -56,9 +56,9 @@
             });
             // on document ready
             angular.element(document).ready(function () {
-                /*getConfig();
-                getLanguages();*/
+               
             });
+            
             $scope.genderChanged = function (value) {
                 $scope.gender = value || 'male';
             };
@@ -90,53 +90,24 @@
                 $scope.$broadcast('reloadData');
             };
             $scope.openHelp = function () {
-                var modalInstance = $modal.open({
+                var helpModalInstance = $modal.open({
                     templateUrl: 'js/app/main/partials/helpModal.html',
                     controller: 'HelpModalCtrl',
                     scope: $scope
                 });
-                modalInstance.result.then(function () {
+                helpModalInstance.result.then(function () {
                     //on ok button press 
                 }, function () {
                     //dismiss            
                 });
             };
+
             // get available tables for the current language
             $scope.getTables = function (id) {
                 MainServices.tables.query({
                     lid: id
                 }, onTablesSuccess, onDataError);
-            };
-            // get app config
-            function getConfig() {
-                Config.query({}, onConfigSuccess, onDataError);
-            }
-
-            function onConfigSuccess(e) {
-                $timeout(function () {
-                    $scope.config = e;
-                    $scope.$apply();
-                }, 0);
-            }
-            // get available languages
-            function getLanguages() {
-                MainServices.languages.query({}, onLanguagesSuccess, onDataError);
-            }
-
-            function onLanguagesSuccess(e) {
-                $timeout(function () {
-                    $scope.languages = e;
-                    $scope.$apply();
-                    setCurrentLanguage();
-                }, 0);
-            }
-
-            function setCurrentLanguage() {
-                $scope.selectedLanguage = $filter('filter')($scope.languages, {
-                    language_id: $scope.langId
-                })[0];
-            }
-
+            };            
 
             function onTablesSuccess(e) {
                 $timeout(function () {
@@ -156,7 +127,37 @@
                     $scope.selectedTable = $scope.tables[0];
                     $scope.tableId = $scope.tables[0].table_id;
                 }
+            }
 
+            // get app config
+            function getConfig() {
+                Config.query({}, onConfigSuccess, onDataError);
+            }
+
+            function onConfigSuccess(e) {
+                $timeout(function () {
+                    $scope.config = e;
+                    $scope.$apply();
+                }, 0);
+            }
+
+            // get available languages
+            function getLanguages() {
+                MainServices.languages.query({}, onLanguagesSuccess, onDataError);
+            }
+
+            function onLanguagesSuccess(e) {
+                $timeout(function () {
+                    $scope.languages = e;
+                    $scope.$apply();
+                    setCurrentLanguage();
+                }, 0);
+            }
+
+            function setCurrentLanguage() {
+                $scope.selectedLanguage = $filter('filter')($scope.languages, {
+                    language_id: $scope.langId
+                })[0];
             }
 
             function hidePleaseWaitModal() {
@@ -167,8 +168,6 @@
                 $location.path("/error/" + e.status);
                 $location.replace();
             }
-
         }
     ]);
 })();
-

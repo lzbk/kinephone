@@ -3,12 +3,13 @@
 
     angular.module('table').controller('TableCtrl', [
         '$scope',
+        '$route',
         '$filter',
         '$location',
         '$timeout',
         'TableDataService',
         'ParamsServices',
-        function ($scope, $filter, $location, $timeout, TableDataService, ParamsServices) {
+        function ($scope, $route, $filter, $location, $timeout, TableDataService, ParamsServices) {
             $scope.tableData = null; // all datas for the current table
             $scope.details = null; // details for the current item selected    
             $scope.sounds = new Array();
@@ -53,14 +54,13 @@
                 TableDataService.query({
                     lid: $scope.langId,
                     tid: $scope.tableId
-                }, onItemsSuccess, onDataError);
+                }, onTableDataSuccess, onDataError);
             }
 
-            function onItemsSuccess(e) {
+            function onTableDataSuccess(e) {
                 // have to use this ($apply and $timeout)... or image map will be very strange and not always updated 
                 $timeout(function () {
                     $scope.tableData = e;
-                    console.log(e);
                     $scope.showDetails = false;
                     $scope.$apply();
                     $scope.init();
@@ -135,8 +135,7 @@
                         $scope.sounds.push(data);
                     }
                 }
-            }
-            
+            }            
         }
     ]);
 })();

@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <!-- DRAWING -->
-                            <div data-ng-show="params.showImage" data-ng-class="params.showColor ? 'col-xs-6':'col-xs-12'" class="text-center">
+                            <div data-ng-show="params.showImage && tableData.code_iso != 'fr_fr'" data-ng-class="params.showColor ? 'col-xs-6':'col-xs-12'" class="text-center">
                                 <div class="detail-img-container">
                                     <img id="img-2" data-ng-src="{{details.images[1].url}}">
                                 </div>
@@ -85,14 +85,12 @@
                             <div class="col-xs-12">
                                 <div data-ng-show="params.showWord">
                                     <h5>{{translation.WORD}}: <span data-ng-bind-html="details.texts[0].text"></span></h5>
-                                    <!--<h5>{{translation.WORD}}: {{details.texts[0].text}}</h5>-->
                                 </div>
                                 <div data-ng-show="params.showPhonem">
                                     <h5>{{translation.PHONEM}}: /<span data-ng-bind-html="details.texts[1].text"></span>/</h5>
                                 </div>
                                 <div data-ng-show="params.showSentence">
                                     <h5>{{translation.SENTENCE}}: <span data-ng-bind-html="details.texts[2].text"></span></h5>
-                                    <!--<h5>{{translation.SENTENCE}}: {{details.texts[2].text}}</h5>-->
                                 </div>
                             </div>
                         </div>

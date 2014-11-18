@@ -13,10 +13,9 @@
 
             if (!$scope.isAuthenticated || !$routeParams.table || !$routeParams.lang) {
                 redirect();
-            }
-            else {
+            } else {                
                 loadParams();
-            }            
+            }         
 
             $scope.update = function (params) {
                 $scope.params.$update({
@@ -28,7 +27,6 @@
             $scope.$on('reloadData', loadParams);
             
             function loadParams(){
-                console.log('heard ' + $scope.selectedTable.table_id);
                 ParamsServices.query({
                     tid: $scope.selectedTable.table_id
                 }, onParamsSuccess, onParamsError);
