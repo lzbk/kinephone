@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-ng-app="App" data-ng-cloak="">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,124 +20,57 @@
         <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/libs/jquery.imagemap.js"></script>
         <!-- ANGULAR LIBs -->
-        <script type="text/javascript" src="js/libs/angular/angular.min.js"></script>
-        <script type="text/javascript" src="js/libs/angular/angular-route.min.js"></script>
-        <script type="text/javascript" src="js/libs/angular/angular-resource.min.js"></script>
+        <script type="text/javascript" src="js/libs/angular/angular.js"></script>
+        <script type="text/javascript" src="js/libs/angular/angular-route.js"></script>
+        <script type="text/javascript" src="js/libs/angular/angular-resource.js"></script>
         <script type="text/javascript" src="js/libs/angular/angular-sanitize.js"></script>
         <script type="text/javascript" src="js/libs/angular-ui-bootstrap.min.js"></script>
         <script type="text/javascript" src="js/libs/gesture.js"></script>
         <script type="text/javascript" src="js/libs/angular-toggle-switch.min.js"></script>
-        <script type="text/javascript" src="js/libs/angular-spinkit.min.js"></script>
-        <!-- app entry point -->
-        <script src="js/app/main/main.module.js"></script>
-        <!-- common services / modals -->        
-        <script src="js/app/common/services/CommonServices.js"></script>
-        <script src="js/app/common/modals/controllers/HelpModalCtrl.js"></script>
-         <script src="js/app/common/modals/controllers/WaitModalCtrl.js"></script>
-        <!-- angular app & modules -->
-        <!-- main -->
-        <script src="js/app/main/services/MainServices.js"></script>
-        <script src="js/app/main/controllers/MainCtrl.js"></script>        
+        <!-- ANGULAR APP -->
         <!-- table -->
-        <script src="js/app/modules/table/table.module.js"></script>
-        <script src="js/app/modules/table/services/TableServices.js"></script>
-        <script src="js/app/modules/table/controllers/TableCtrl.js"></script>
+        <script src="js/app/table/Table.module.js"></script>
+        <script src="js/app/table/services/TableService.js"></script>
+        <script src="js/app/table/controllers/TableCtrl.js"></script>
+        <!-- config -->
+        <script src="js/app/config/Config.module.js"></script>
+        <script src="js/app/config/services/ConfigService.js"></script>
+        <!-- language -->
+        <script src="js/app/language/Language.module.js"></script>
+        <script src="js/app/language/services/LanguageService.js"></script>
+        <!-- translation -->
+        <script src="js/app/translation/Translation.module.js"></script>
+        <script src="js/app/translation/services/TranslationService.js"></script>
+        <!-- modals -->
+        <script src="js/app/modals/Modal.module.js"></script>
+        <script src="js/app/modals/controllers/HelpModalCtrl.js"></script>
+        <script src="js/app/modals/controllers/WaitModalCtrl.js"></script>
         <!-- params -->
-        <script src="js/app/modules/params/params.module.js"></script>
-        <script src="js/app/modules/params/services/ParamsServices.js"></script>
-        <script src="js/app/modules/params/controllers/ParamsCtrl.js"></script>
-        <!-- error -->
-        <script src="js/app/modules/error/error.module.js"></script>
-        <script src="js/app/modules/error/controllers/ErrorCtrl.js"></script>
+        <script src="js/app/params/Params.module.js"></script>
+        <script src="js/app/params/services/ParamsService.js"></script>
+        <script src="js/app/params/controllers/ParamsCtrl.js"></script>
+        <!-- header directive -->
+        <script type="text/javascript" src="js/app/header/Header.module.js"></script>
+        <script type="text/javascript" src="js/app/header/controllers/HeaderCtrl.js"></script>
+        <script type="text/javascript" src="js/app/header/directives/HeaderDirective.js"></script>
+        <script type="text/javascript" src="js/app/header/services/HeaderService.js"></script>
+        <!-- app entry point -->   
+        <script src="js/app/App.module.js"></script>
+
     </head>
     <body>
-        <div ng-app="main" ng-controller="MainCtrl">
-            <div class="container-fluid">
-                <!-- TOP FIXED HEADER / NAV -->
-                <nav class="navbar navbar-default navbar-fixed-top">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" data-ng-click="reloadData()" href="#/{{langId}}/{{tableId}}/table" title="Home">Kinephone</a>
-                        </div>
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="navbar-collapse">
-                            <!-- CHOOSE LANGUAGE & TABLE -->
-                            <form class="navbar-form navbar-left">
-                                <div class="form-group">
-                                    <label class="sr-only" for="{{translation.LANGUAGE}}">{{translation.LANGUAGE}}</label>                                    
-                                    <select class="form-control" data-ng-model="selectedLanguage" data-ng-options="language as language.language_name for language in languages track by language.language_id" data-ng-change="onLanguageChange()">
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="{{translation.TABLE}}">{{translation.TABLE}}</label>                                    
-                                    <select class="form-control" data-ng-model="selectedTable" data-ng-options="table as table.table_name for table in tables track by table.table_id" data-ng-change="onTableChange()">
-                                    </select>
-                                </div>
-                                <button type="button" data-ng-click="reloadData()" tooltip="{{translation.RELOAD}}" tooltip-placement="bottom" class="btn btn-default fa fa-refresh"></button>
-                            </form>
-                            <!-- SET GENDER -->
-                            <div class="navbar-form navbar-left play-mode-buttons btn-group">
-                                <button data-ng-class="gender === 'male' ? 'btn btn-default active':'btn btn-default'" data-tooltip="{{translation.CHOOSE_GENDER}}" tooltip-placement="bottom" data-ng-model="gender" data-hm-tap="genderChanged('male')">
-                                <i class="fa fa-male"></i>
-                                </button>
-                                <button data-ng-class="gender === 'female' ? 'btn btn-default active':'btn btn-default'" data-tooltip="{{translation.CHOOSE_GENDER}}" data-tooltip-placement="bottom"  data-ng-model="gender" data-hm-tap="genderChanged('female')">
-                                <i class="fa fa-female"></i>
-                                </button>
-                            </div>
-                            <!-- SET SILENT WAY OR NOT -->
-                            <div class="navbar-form navbar-left play-mode-buttons btn-group">
-                                <button data-ng-class="!isSilentWay ? 'btn btn-default active':'btn btn-default'" data-tooltip="{{translation.SILENTWAY_NO}}" data-tooltip-placement="bottom"  data-ng-model="isSilentWay" data-hm-tap="eventModeChange()">
-                                <i class="fa fa-volume-up"></i>
-                                </button>
-                                <button data-ng-class="isSilentWay ? 'btn btn-default active':'btn btn-default'" data-tooltip="{{translation.SILENTWAY}}" tooltip-placement="bottom" data-ng-model="isSilentWay" data-hm-tap="eventModeChange()">
-                                <i class="fa fa-volume-off"></i>
-                                </button>
-                            </div>
-                            <!-- TABLE PARAMs ICON (only if authenticated) -->
-                            <ul class="nav navbar-nav" data-ng-show="isAuthenticated">
-                                <li><a href="#/{{langId}}/{{tableId}}/params" class="fa fa-gear" data-tooltip="{{translation.PARAMETERS}}" data-tooltip-placement="bottom"></a></li>
-                            </ul>
-                            <!-- LOGIN FORM -->
-                            <form class="navbar-form navbar-left" name="authentication" data-ng-show="!isAuthenticated">
-                                <div class="form-group">
-                                    <label class="sr-only" for="{{translation.LOGIN}}">{{translation.LOGIN}}</label>
-                                    <input type="text" class="form-control" placeholder="{{translation.LOGIN}}" data-ng-model="login">
-                                </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="{{translation.PASSWORD}}">{{translation.PASSWORD}}</label>
-                                    <input type="password" class="form-control" placeholder="{{translation.PASSWORD}}" data-ng-model="pass">
-                                </div>
-                                <button type="button" data-ng-click="signIn()" data-tooltip="{{translation.SIGNIN}}" data-tooltip-placement="bottom" class="btn btn-default fa fa-sign-in"></button>
-                            </form>
-                            <div class="navbar-form navbar-left" ng-show="isAuthenticated">
-                                <span>{{translation.WELCOME}} {{login}} </span>
-                                <button type="button" class="btn btn-default" data-ng-click="signOut()" data-tooltip="{{translation.SIGNOUT}}" data-tooltip-placement="bottom">
-                                <i class="fa fa-sign-out"></i> 
-                                </button>
-                            </div>
-                            <div class="navbar-form navbar-right btn-group">
-                                <button class="btn btn-default fa fa-question-circle" data-tooltip="{{translation.HELP}}" data-tooltip-placement="left"  data-hm-tap="openHelp()"></button>
-                            </div>      
-                                             
-                        </div>
-                    </div>
-                </nav>
-                <!-- VIEWS -->
-                <div data-ng-view>
-                </div>
+        <div class="container-fluid">
+            <!-- TOP FIXED HEADER / NAV -->
+            <ui-header></ui-header>
+            <!-- PARTIALS -->
+            <div data-ng-view="">
             </div>
         </div>
     </body>
     <script>
-                // https://gist.github.com/benhuson/8664741
-                if (navigator.userAgent.match(/iPad;.*CPU.*OS 7_\d/i)) {
-                    $('html').addClass('ipad ios7');
-                }
+        // https://gist.github.com/benhuson/8664741
+        if (navigator.userAgent.match(/iPad;.*CPU.*OS 7_\d/i)) {
+            $('html').addClass('ipad ios7');
+        }
     </script>
 </html>

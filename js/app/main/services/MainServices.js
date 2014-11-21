@@ -1,15 +1,46 @@
-(function () {
+(function() {
     'use strict';
-    angular.module('main').factory('MainServices', [
-        '$resource', 'apiUrl',
-        function ($resource, apiUrl) {
+    angular.module('Main').factory('MainServices', ['$http', '$q', '$filter', 'apiUrl',
+        function($http, $q, $filter, apiUrl) {
+
             return {
-                languages: $resource(apiUrl + 'languages', {}, {
-                    query: {method: 'GET', isArray: true} // get all available languages
-                }),
-                tables: $resource(apiUrl + 'languages/:lid/tables', {}, {
-                    query: {method: 'GET', isArray: true} // get all available tables for a given language id
-                })
+                getAvailableLanguages: function() {
+                    var deferred = $q.defer();
+                    deferred.notify();
+            
+                    $http.get(apiUrl + 'languages', {})
+                    .success(function (data) {
+                        deferred.resolve(data);
+                    });
+                    return deferred.promise;
+                },
+                setCurrentLanguage : function(languages, id){
+                    return $filter('filter')(languages, {
+                        language_id: id
+                    })[0];         
+                },
+                getLanguageTables: function(id) {                   
+                    var deferred = $q.defer();
+                    deferred.notify();                    
+                    $http.get(apiUrl + 'languages/'+id+'/tables')
+                    .success(function (data) {
+                        deferred.resolve(data);
+                    });
+                    return deferred.promise;
+                },
+                setCurrentTable : function(tables, id) {
+                    var selectedTable = $filter('filter')(tables, {
+                        table_id: id
+                    })[0];
+
+                    // if we change the language via drop down menu, there is no corresponding table Id 
+                    // so we select the first one by default
+                    if (!selectedTable) {  
+                        selectedTable = tables[0];                       
+                    }
+                    return selectedTable;
+                }
             };
-        }]);
+        }
+    ]);
 })();

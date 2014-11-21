@@ -1,17 +1,16 @@
 (function () {
     'use strict';
 
-    angular.module('main').controller('MainCtrl', [
+    angular.module('Main').controller('MainCtrl', [
         '$scope',
         '$timeout',
         '$location',
-        '$filter',
         '$routeParams',
         '$modal',
         'MainServices',
-        'Config',
-        'Translation',
-        function ($scope, $timeout, $location, $filter, $routeParams, $modal, MainServices, Config, Translation) {
+        'ConfigService',
+        'TranslationService',
+        function ($scope, $timeout, $location, $routeParams, $modal, MainServices, ConfigService, TranslationService) {
             $scope.languages = {}; // available languages
             $scope.tables = {}; // available tables for a given language 
             $scope.config = {}; // app config
@@ -29,7 +28,7 @@
             $scope.waitModalInstance;
             function showPleaseWaitModal() {
                 $scope.waitModalInstance = $modal.open({
-                    templateUrl: 'js/app/common/modals/partials/waitModal.html',
+                    templateUrl: 'js/appmodals/partials/waitModal.html',
                     controller: 'WaitModalCtrl',
                     scope: $scope,
                     backdrop: 'static'
@@ -40,11 +39,12 @@
             $scope.$on('tableDataReady', hidePleaseWaitModal);
 
             // get translation service
-            Translation.getTranslation($scope, 'fr');
+            // TranslationService.getTranslation($scope, 'fr');
             // here it is not possible to use $routeParams
-            $scope.$on('$routeChangeSuccess', function (event, current, previous) {
+            /*$scope.$on('$routeChangeSuccess', function (event, current, previous) {
                 getConfig();
                 getLanguages();
+                console.log('youpi');
                 // current is the current route
                 // previous is the previous route
                 $scope.langId = $routeParams.lang ? $routeParams.lang : 1;
@@ -53,11 +53,11 @@
                 $timeout(function () {
                     $scope.$broadcast('mainDataReady');
                 }, 200);
-            });
+            });*/
             // on document ready
-            angular.element(document).ready(function () {
+            /*angular.element(document).ready(function () {
                
-            });
+            });*/
             
             $scope.genderChanged = function (value) {
                 $scope.gender = value || 'male';
@@ -101,37 +101,10 @@
                     //dismiss            
                 });
             };
-
-            // get available tables for the current language
-            $scope.getTables = function (id) {
-                MainServices.tables.query({
-                    lid: id
-                }, onTablesSuccess, onDataError);
-            };            
-
-            function onTablesSuccess(e) {
-                $timeout(function () {
-                    $scope.tables = e;
-                    $scope.$apply();
-                    setCurrentTable();
-                }, 0);
-            }
-
-            function setCurrentTable() {
-                $scope.selectedTable = $filter('filter')($scope.tables, {
-                    table_id: $scope.tableId
-                })[0];
-
-                // if we change the language via drop down menu, there is no corresponding table Id so we have to select the first one
-                if (!$scope.selectedTable) {  
-                    $scope.selectedTable = $scope.tables[0];
-                    $scope.tableId = $scope.tables[0].table_id;
-                }
-            }
-
+           
             // get app config
             function getConfig() {
-                Config.query({}, onConfigSuccess, onDataError);
+                ConfigService.query({}, onConfigSuccess, onDataError);
             }
 
             function onConfigSuccess(e) {
@@ -142,23 +115,23 @@
             }
 
             // get available languages
-            function getLanguages() {
-                MainServices.languages.query({}, onLanguagesSuccess, onDataError);
+            function getLanguages() {               
+                var promise = MainServices.getAvailableLanguages();
+                promise.then(function(data){
+                    $scope.languages = data;
+                    $scope.selectedLanguage = MainServices.setCurrentLanguage($scope.languages, $scope.langId);
+                });
             }
 
-            function onLanguagesSuccess(e) {
-                $timeout(function () {
-                    $scope.languages = e;
-                    $scope.$apply();
-                    setCurrentLanguage();
-                }, 0);
-            }
-
-            function setCurrentLanguage() {
-                $scope.selectedLanguage = $filter('filter')($scope.languages, {
-                    language_id: $scope.langId
-                })[0];
-            }
+             // get available tables for the selected language
+            $scope.getTables = function (id) {
+                var promise = MainServices.getLanguageTables(id);
+                promise.then(function(data){
+                    $scope.tables = data;
+                    $scope.selectedTable = MainServices.setCurrentTable($scope.tables, $scope.tableId);
+                    $scope.tableId = $scope.selectedTable.table_id;
+                });
+            };
 
             function hidePleaseWaitModal() {
                 $scope.waitModalInstance.close();
