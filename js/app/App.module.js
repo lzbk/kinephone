@@ -8,9 +8,9 @@
     ])
 
     // rest api base url dev
-    .value('apiUrl', 'http://localhost/innova/kinephone-api/web/index.php/kinephones/')
+    //.value('apiUrl', 'http://localhost/innova/kinephone-api/web/index.php/kinephones/')
     // rest api base url prod
-    //.value('apiUrl', 'http://dev.innovalangues.net/kinephone-api/web/index.php/kinephones/')
+    .value('apiUrl', 'http://dev.innovalangues.net/kinephone-api/web/index.php/kinephones/')
 
     .run([
         '$rootScope', 
