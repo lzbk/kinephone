@@ -12,16 +12,16 @@
         'TableService',
         function ($scope, $location, $route, ConfigService, HeaderService, TranslationService, LanguageService, TableService) {
 
-            $scope.languages = {}; // available languages
-            $scope.tables = {}; // available tables for a given language 
-            $scope.config = {}; // app config
-            $scope.langId = null; // current lang id
-            $scope.tableId = null; // current table id
-            $scope.selectedLanguage = {}; // selected language binded to html select
+            $scope.languages = {};                                          // available languages
+            $scope.tables = {};                                             // available tables for a given language 
+            $scope.config = {};                                             // app config
+            $scope.langId = null;                                           // current lang id
+            $scope.tableId = null;                                          // current table id
+            $scope.selectedLanguage = {};                                   // selected language binded to html select
             $scope.selectedTable = {};
-            $scope.isAuthenticated = HeaderService.getIsAuthenticated(); // is user authenticated ?
-            $scope.gender = HeaderService.getGender(); // default gender
-            $scope.isSilentWay = false; // silent way means that when you tap on an item you won't here the sound but see details
+            $scope.isAuthenticated = HeaderService.getIsAuthenticated();    // is user authenticated ?
+            $scope.gender = HeaderService.getGender();                      // current gender
+            $scope.isSilentWay = false;                                     // silent way means that when you tap on an item you won't here the sound but see details
             $scope.login = '';
             $scope.pass = '';
 
@@ -93,21 +93,16 @@
             };
             
             $scope.reloadData = function () {
-                //console.log($route.current.controller);
                 var ctrl = $route.current.controller;
                 var path = '/' + $scope.selectedLanguage.language_id + '/' + $scope.selectedTable.table_id;
                 if(ctrl === 'TableCtrl'){
-                    console.log('table');
                     path +=  '/table';
                 }
                 else if(ctrl === 'ParamsCtrl'){
-                    console.log('params');
                     path +=  '/params';
-                }
-                
+                }                
                 $location.path(path);
                 $location.replace();
-
             };
         }
     ]);
