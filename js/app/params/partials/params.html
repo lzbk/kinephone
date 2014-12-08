@@ -4,13 +4,13 @@
         <div ng-show="success" class="col-md-12">
             <div class="alert alert-success">
                 <a class="close" data-dismiss="alert">×</a>
-                <strong>{{translation.PARAM_UPDATE_SUCCESS}}</strong>
+                <strong>Les paramètres ont bien été sauvegardés.</strong>
             </div>
         </div>
         <div ng-show="error" class="col-md-12">
             <div class="alert alert-danger">
                 <a class="close" data-dismiss="alert">×</a>
-                <strong>{{translation.PARAM_UPDATE_ERROR}}</strong>
+                <strong>Une erreur s'est produite lors de la mise à jour des paramètres.</strong>
             </div>
         </div>
     </div>
@@ -20,40 +20,40 @@
             <table class="table">            
                 <tbody>
                     <tr data-ng-show="langId != 3">
-                        <td>{{translation.SHOW_DRAWING}}</td>
-                        <td><toggle-switch model="params.showImage" on-label="{{translation.YES}}" off-label="{{translation.NO}}"><toggle-switch></td>
+                        <td>Montrer les dessins</td>
+                        <td><toggle-switch model="params.showImage" on-label="Oui" off-label="Non"><toggle-switch></td>
                     </tr>
                     <tr>
-                        <td>{{translation.SHOW_COLOR}}</td>
-                        <td><toggle-switch model="params.showColor" on-label="{{translation.YES}}" off-label="{{translation.NO}}"><toggle-switch></td>
+                        <td>Montrer les couleurs</td>
+                        <td><toggle-switch model="params.showColor" on-label="Oui" off-label="Non"><toggle-switch></td>
                     </tr>
                     <tr>
-                        <td>{{translation.SHOW_PHONEM_TEXT}}</td>
-                        <td><toggle-switch model="params.showPhonem" on-label="{{translation.YES}}" off-label="{{translation.NO}}" off-value="false"><toggle-switch></td>
+                        <td>Montrer le texte du phonème</td>
+                        <td><toggle-switch model="params.showPhonem" on-label="Oui" off-label="Non" off-value="false"><toggle-switch></td>
                     </tr>
                     <tr>
-                        <td>{{translation.SHOW_WORD_TEXT}}</td>
-                        <td><toggle-switch model="params.showWord" on-label="{{translation.YES}}" off-label="{{translation.NO}}" off-value="false"><toggle-switch></td>
+                        <td>Montrer le texte du mot</td>
+                        <td><toggle-switch model="params.showWord" on-label="Oui" off-label="Non" off-value="false"><toggle-switch></td>
                     </tr>
                     <tr>
-                        <td>{{translation.SHOW_SENTENCE_TEXT}}</td>
-                        <td><toggle-switch model="params.showSentence" on-label="{{translation.YES}}" off-label="{{translation.NO}}" off-value="false"><toggle-switch></td>
+                        <td>Montrer le texte de la phrase</td>
+                        <td><toggle-switch model="params.showSentence" on-label="Oui" off-label="Non" off-value="false"><toggle-switch></td>
                     </tr>
                     <tr>
-                        <td>{{translation.SHOW_PHONEM_SOUND}}</td>
-                        <td><toggle-switch model="params.showPhonemSound" on-label="{{translation.YES}}" off-label="{{translation.NO}}"><toggle-switch></td>
+                        <td>Montrer le son du phonème</td>
+                        <td><toggle-switch model="params.showPhonemSound" on-label="Oui" off-label="Non"><toggle-switch></td>
                     </tr>
                     <tr>
-                        <td>{{translation.SHOW_WORD_SOUND}}</td>
-                        <td><toggle-switch model="params.showWordSound" on-label="{{translation.YES}}" off-label="{{translation.NO}}"><toggle-switch></td>
+                        <td>Montrer le son du mot</td>
+                        <td><toggle-switch model="params.showWordSound" on-label="Oui" off-label="Non"><toggle-switch></td>
                     </tr>
                     <tr>
-                        <td>{{translation.SHOW_SENTENCE_SOUND}}</td>
-                        <td><toggle-switch model="params.showSentenceSound" on-label="{{translation.YES}}" off-label="{{translation.NO}}"><toggle-switch></td>
+                        <td>Montrer le son de la phrase</td>
+                        <td><toggle-switch model="params.showSentenceSound" on-label="Oui" off-label="Non"><toggle-switch></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td><button class="btn btn-default" ng-click="update(params)">{{translation.SAVE_PARAMETERS}}</button></td>
+                        <td><button class="btn btn-default" ng-click="update(params)">Sauvegarder les paramètres</button></td>
                     </tr>
                 </tbody>
             </table>

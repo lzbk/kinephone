@@ -4,6 +4,7 @@
         'ngRoute',
         'ngResource',
         'ngSanitize',
+        'ui.bootstrap',
         'angular-gestures',
         'Language',
         'Params'

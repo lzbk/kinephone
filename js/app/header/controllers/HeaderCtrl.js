@@ -7,10 +7,9 @@
         '$route',
         'ConfigService',
         'HeaderService',
-        'TranslationService',
         'LanguageService',
         'TableService',
-        function ($scope, $location, $route, ConfigService, HeaderService, TranslationService, LanguageService, TableService) {
+        function ($scope, $location, $route, ConfigService, HeaderService,  LanguageService, TableService) {
 
             $scope.languages = {};                                          // available languages
             $scope.tables = {};                                             // available tables for a given language 
@@ -28,10 +27,8 @@
             // get app config
             ConfigService.query({}, function (e) {
                 $scope.config = e;
-            });
-            
-            // get translation
-            TranslationService.getTranslation($scope, 'fr');
+            });     
+         
 
             // get available languages           
             var lPromise = LanguageService.getAvailableLanguages();
@@ -52,7 +49,7 @@
                         TableService.setCurrentTableId($scope.tables[0].table_id);
                     }
                     $scope.tableId = TableService.getCurrentTableId();                    
-                    $scope.selectedTable = TableService.setSelectedTable($scope.tables, $scope.tableId); 
+                    $scope.selectedTable = TableService.setCurrentTable($scope.tables, $scope.tableId); 
                 });
             }
 
@@ -74,8 +71,8 @@
             };
             
             $scope.signOut = function () {
-                $scope.login = null;
-                $scope.pass = null;
+                $scope.login = '';
+                $scope.pass = '';
                 $scope.isAuthenticated = false;
                 HeaderService.setIsAuthenticated($scope.isAuthenticated);
             };

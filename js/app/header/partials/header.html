@@ -8,61 +8,64 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" data-ng-click="reloadData()" href="#/{{langId}}/{{tableId}}/table" title="Home">Kinephone</a>
+            <a class="navbar-brand" data-ng-click="reloadData()" href="#/{{langId}}/{{tableId}}/table" data-tooltip="Accueil" data-tooltip-placement="bottom">Kinephones</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <!-- CHOOSE LANGUAGE & TABLE -->
             <form class="navbar-form navbar-left">
                 <div class="form-group">
-                    <label class="sr-only" for="{{translation.LANGUAGE}}">{{translation.LANGUAGE}}</label>                                    
+                    <label class="sr-only" for="Langue">Langue</label>                                    
                     <select class="form-control" data-ng-model="selectedLanguage" data-ng-options="language as language.language_name for language in languages track by language.language_id" data-ng-change="onLanguageChange()">
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="sr-only" for="{{translation.TABLE}}">{{translation.TABLE}}</label>                                    
+                    <label class="sr-only" for="Table">Table</label>                                    
                     <select class="form-control" data-ng-model="selectedTable" data-ng-options="table as table.table_name for table in tables track by table.table_id" data-ng-change="onTableChange()">
                     </select>
                 </div>
-                <button type="button" data-ng-click="reloadData()" tooltip="{{translation.RELOAD}}" tooltip-placement="bottom" class="btn btn-default fa fa-refresh"></button>
+                <button type="button" data-ng-click="reloadData()" data-tooltip="Charger" data-tooltip-placement="bottom" class="btn btn-default fa fa-refresh"></button>
             </form>
             <!-- SET GENDER -->
             <div class="navbar-form navbar-left play-mode-buttons btn-group">
-                <button class="btn btn-default" data-ng-class="{'active': gender === 'male' }" data-tooltip="{{translation.CHOOSE_GENDER}}" tooltip-placement="bottom" data-ng-model="gender" data-hm-tap="genderChanged('male')">
+                <button class="btn btn-default" data-ng-class="{'active': gender === 'male' }" data-tooltip="Voix masculines" data-tooltip-placement="bottom" data-ng-model="gender" data-hm-tap="genderChanged('male')">
                     <i class="fa fa-male"></i>
                 </button>
-                <button class="btn btn-default" data-ng-class="{'active': gender === 'female' }" data-tooltip="{{translation.CHOOSE_GENDER}}" data-tooltip-placement="bottom"  data-ng-model="gender" data-hm-tap="genderChanged('female')">
+                <button class="btn btn-default" data-ng-class="{'active': gender === 'female' }" data-tooltip="Voix féminines" data-tooltip-placement="bottom" data-ng-model="gender" data-hm-tap="genderChanged('female')">
                     <i class="fa fa-female"></i>
                 </button>
             </div>
             <!-- SET SILENT WAY OR NOT -->
-            <div class="navbar-form navbar-left play-mode-buttons btn-group">
-                <button class="btn btn-default" data-ng-class="{'active' : !isSilentWay}" data-tooltip="{{translation.SILENTWAY_NO}}" data-tooltip-placement="bottom"  data-ng-model="isSilentWay" data-hm-tap="eventModeChange()">
-                    <i class="fa fa-volume-up"></i>
-                </button>
-                <button class="btn btn-default" data-ng-class="{'active' : isSilentWay}" data-tooltip="{{translation.SILENTWAY}}" tooltip-placement="bottom" data-ng-model="isSilentWay" data-hm-tap="eventModeChange()">
-                    <i class="fa fa-volume-off"></i>
-                </button>
+            <div class="navbar-form navbar-left">
+                <label class="control-label fa fa-hand-o-up"> :</label>
+                <div class="play-mode-buttons btn-group">                    
+                    <button class="btn btn-default" data-ng-class="{'active' : !isSilentWay}" data-tooltip="clic court=audio, clic long=infos" data-tooltip-placement="bottom"  data-ng-model="isSilentWay" data-hm-tap="eventModeChange()">
+                        <i class="fa fa-volume-up"></i>
+                    </button>
+                    <button class="btn btn-default" data-ng-class="{'active' : isSilentWay}" data-tooltip="clic court=infos, clic long=audio" data-tooltip-placement="bottom" data-ng-model="isSilentWay" data-hm-tap="eventModeChange()">
+                        <i class="fa fa-list-alt"></i>
+                    </button>
+                </div>
             </div>
             <!-- TABLE PARAMs ICON (only if authenticated) -->
             <ul class="nav navbar-nav" data-ng-show="isAuthenticated">
-                <li><a href="#/{{langId}}/{{tableId}}/params" class="fa fa-gear" data-tooltip="{{translation.PARAMETERS}}" data-tooltip-placement="bottom"></a></li>
+                <li><a href="#/{{langId}}/{{tableId}}/params" class="fa fa-gear" data-tooltip="Paramètres" data-tooltip-placement="bottom"></a></li>
             </ul>
             <!-- LOGIN FORM -->
             <form class="navbar-form navbar-left" name="authentication" data-ng-show="!isAuthenticated">
                 <div class="form-group">
-                    <label class="sr-only" for="{{translation.LOGIN}}">{{translation.LOGIN}}</label>
-                    <input type="text" class="form-control" placeholder="{{translation.LOGIN}}" data-ng-model="login">
+                    <label class="sr-only" for="Identifiant">Identifiant</label>
+                    <input type="text" class="form-control" placeholder="Identifiant" data-ng-model="login">
                 </div>
                 <div class="form-group">
-                    <label class="sr-only" for="{{translation.PASSWORD}}">{{translation.PASSWORD}}</label>
-                    <input type="password" class="form-control" placeholder="{{translation.PASSWORD}}" data-ng-model="pass">
+                    <label class="sr-only" for="Pass">Mot de passe</label>
+                    <input type="password" class="form-control" placeholder="Mot de passe" data-ng-model="pass">
                 </div>
-                <button type="button" data-ng-click="signIn()" data-tooltip="{{translation.SIGNIN}}" data-tooltip-placement="bottom" class="btn btn-default fa fa-sign-in"></button>
+                <button type="button" data-ng-click="signIn()" data-tooltip="Se connecter" data-tooltip-placement="bottom" class="btn btn-default fa fa-sign-in"></button>
             </form>
             <div class="navbar-form navbar-left" ng-show="isAuthenticated">
-                <span>{{translation.WELCOME}} {{login}} </span>
-                <button type="button" class="btn btn-default" data-ng-click="signOut()" data-tooltip="{{translation.SIGNOUT}}" data-tooltip-placement="bottom">
+                <span>Bienvenue {{login}} </span>
+                <button type="button" class="btn btn-default" data-ng-click="signOut()" data-tooltip="Se deconnecter" data-tooltip-placement="bottom">
                     <i class="fa fa-sign-out"></i> 
                 </button>
             </div>

@@ -16,7 +16,7 @@
                 <!-- Toggle details button -->
                 <div class="row">
                     <div class="col-xs-12">                       
-                        <button class="btn btn-default fa pull-right" data-ng-class="{'fa-chevron-circle-up' : showDetails, 'fa-chevron-circle-down':!showDetails}" data-ng-click="toggleDetailPanel()" data-ng-model="showDetails" data-tooltip="{{translation.HIDE_SHOW_DETAILS}}" data-tooltip-placement="left"></button>
+                        <button class="btn btn-default fa pull-right" data-ng-class="{'fa-chevron-circle-up' : showDetails, 'fa-chevron-circle-down':!showDetails}" data-ng-click="toggleDetailPanel()" data-ng-model="showDetails" data-tooltip="Afficher / Cacher les détails" data-tooltip-placement="top"></button>
                     </div>
                 </div>
                 <!-- No details -->
@@ -24,7 +24,7 @@
                     <hr/>
                     <div class="row">
                         <div class="col-xs-12">
-                            {{translation.NO_DETAILS}}
+                            Veuillez cliquer sur un rectangle pour voir les détails
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                                 <button class="glyphicon glyphicon-play" data-hm-tap="play('word')"></button>
                             </div>
                             <div  class="col-xs-6">
-                                <span>{{translation.LISTEN_TO_WORD}}</span>
+                                <span>Ecouter le phonème dans un mot</span>
                             </div>
                         </div>
                         <hr/>
@@ -65,7 +65,7 @@
                                 <button class="glyphicon glyphicon-play" data-hm-tap="play('phonem')"></button>
                             </div>
                             <div class="col-xs-6">
-                                <span>{{translation.LISTEN_TO_PHONEM}}</span>
+                                <span>Ecouter le phonème</span>
                             </div>
                         </div>
                         <hr/>
@@ -74,7 +74,7 @@
                                 <button class="glyphicon glyphicon-play" data-hm-tap="play('sentence')"></button>
                             </div>
                             <div class="col-xs-6">
-                                <span>{{translation.LISTEN_TO_SENTENCE}}</span>
+                                <span>Ecouter le phonème dans une phrase</span>
                             </div>
                         </div>
                     </div>
@@ -84,13 +84,13 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div data-ng-show="params.showWord">
-                                    <h5>{{translation.WORD}}: <span data-ng-bind-html="details.texts[0].text"></span></h5>
+                                    <h5>Mot : <span data-ng-bind-html="details.texts[0].text"></span></h5>
                                 </div>
                                 <div data-ng-show="params.showPhonem">
-                                    <h5>{{translation.PHONEM}}: /<span data-ng-bind-html="details.texts[1].text"></span>/</h5>
+                                    <h5>Phonème : /<span data-ng-bind-html="details.texts[1].text"></span>/</h5>
                                 </div>
                                 <div data-ng-show="params.showSentence">
-                                    <h5>{{translation.SENTENCE}}: <span data-ng-bind-html="details.texts[2].text"></span></h5>
+                                    <h5>Phrase : <span data-ng-bind-html="details.texts[2].text"></span></h5>
                                 </div>
                             </div>
                         </div>

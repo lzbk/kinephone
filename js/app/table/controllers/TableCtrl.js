@@ -6,15 +6,12 @@
         'TableService',
         'tableData',
         'tableParams',
-        'TranslationService',
         'HeaderService',
-        function ($scope, TableService, tableData, tableParams, TranslationService, HeaderService) {
+        function ($scope, TableService, tableData, tableParams, HeaderService) {
 
             $scope.tableData = tableData; // all datas for the current table
             $scope.params = tableParams;
-            // get translation
-            TranslationService.getTranslation($scope, 'fr');
-
+           
             $scope.details = null; // details for the current item selected    
             $scope.showDetails = false;
 
@@ -62,8 +59,7 @@
                 var item = TableService.getItemDetails($scope.tableData.items, parseInt($scope.details.id));
                 var soundData = TableService.getSound(item.sounds, HeaderService.getGender(), type);
                 var sound = new Audio(soundData.url);
-                if (sound)
-                    sound.play();
+                if (sound) sound.play();
             };
 
             $scope.toggleDetailPanel = function () {

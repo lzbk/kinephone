@@ -4,7 +4,7 @@
 
     angular.module('Config').factory('ConfigService', ['$resource',
         function ($resource) {
-            return $resource('config/config.json', {}, {
+            return $resource('js/app/config/config.json', {}, {
                 query: {method: 'GET', isArray: false}
             });
         }]);

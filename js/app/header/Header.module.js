@@ -1,4 +1,8 @@
 (function() {
     'use strict';
-    angular.module('Header', ['ngResource', 'Config', 'Translation', 'Language']);
+    angular.module('Header', [
+        'ngResource', 
+        'ui.bootstrap',
+        'Config',
+        'Language']);
 })();

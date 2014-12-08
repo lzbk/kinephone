@@ -15,7 +15,7 @@
         function ($http, $q, $filter, apiUrl) {
 
             var tableId = null; // current table id            
-            var selectedTable = {}; // selected table (binded to html select)
+            var currentTable = {}; // selected table (binded to html select)
 
             return{
                 getAvailableTables: function (id) {
@@ -27,19 +27,19 @@
                             });
                     return deferred.promise;
                 },
-                setSelectedTable: function (tables, id) {
-                    selectedTable = $filter('filter')(tables, {
+                setCurrentTable: function (tables, id) {
+                    currentTable = $filter('filter')(tables, {
                         table_id: id
                     })[0];
                     // if we change the language via drop down menu, there is no corresponding table Id 
                     // so we select the first one by default
-                    if (!selectedTable) {
-                        selectedTable = tables[0];
+                    if (!currentTable) {
+                        currentTable = tables[0];
                     }
-                    return selectedTable;
+                    return currentTable;
                 },
-                getSelectedTable: function () {
-                    return selectedTable;
+                getCurrentTable: function () {
+                    return currentTable;
                 },
                 setCurrentTableId: function (id) {
                     tableId = id;

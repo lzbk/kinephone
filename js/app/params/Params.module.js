@@ -2,8 +2,8 @@
     'use strict';
     angular.module('Params', [
         'angular-gestures',
+        'ui.bootstrap',
         'toggle-switch',
-        'Translation',
         'Header',
         'Language',
         'Table'

@@ -5,19 +5,17 @@
         '$location',
         '$timeout',
         'HeaderService',
-        'TranslationService',
         'ParamsService',
         'params',
         'LanguageService',
         'TableService',
-        function ($scope, $location, $timeout, HeaderService, TranslationService, ParamsService, params, LanguageService, TableService) {
+        function ($scope, $location, $timeout, HeaderService, ParamsService, params, LanguageService, TableService) {
             $scope.error = false;
             $scope.success = false;
             $scope.params = params;
             $scope.langId = LanguageService.getCurrentLanguageId();
 
-            // get translation
-            TranslationService.getTranslation($scope, 'fr');
+          
 
             if (!HeaderService.getIsAuthenticated()) {
                 redirect();
