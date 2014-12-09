@@ -67,3 +67,7 @@ audio{
     width: 73px;
     height: 73px;
 }
+
+.tooltip-inner {
+    white-space:nowrap;
+}
