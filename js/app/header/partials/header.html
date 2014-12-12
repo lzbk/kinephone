@@ -48,9 +48,11 @@
                 </div>
             </div>
             <!-- TABLE PARAMs ICON (only if authenticated) -->
-            <ul class="nav navbar-nav" data-ng-show="isAuthenticated">
-                <li><a href="#/{{langId}}/{{tableId}}/params" class="fa fa-gear" data-tooltip="Paramètres" data-tooltip-placement="bottom"></a></li>
-            </ul>
+            <div class="navbar-form navbar-left" data-ng-show="isAuthenticated"> 
+                <button class="btn btn-default" data-ng-click="goToParams()" data-tooltip="Paramètres" data-tooltip-placement="bottom">
+                    <i class="fa fa-gear"></i>
+                </button>
+            </div>
             <!-- LOGIN FORM -->
             <form class="navbar-form navbar-left" name="authentication" data-ng-show="!isAuthenticated">
                 <div class="form-group">
@@ -65,7 +67,7 @@
             </form>
             <div class="navbar-form navbar-left" ng-show="isAuthenticated">
                 <span>Bienvenue {{login}} </span>
-                <button type="button" class="btn btn-default" data-ng-click="signOut()" data-tooltip="Se deconnecter" data-tooltip-placement="bottom">
+                <button type="button" class="btn btn-default" data-ng-click="signOut()" data-tooltip="Se deconnecter" data-tooltip-placement="right">
                     <i class="fa fa-sign-out"></i> 
                 </button>
             </div>

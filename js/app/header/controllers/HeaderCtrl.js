@@ -101,6 +101,12 @@
                 $location.path(path);
                 $location.replace();
             };
+            
+            $scope.goToParams = function(){
+                var path = '/' + $scope.langId + '/' + $scope.tableId + '/params';
+                $location.path(path);
+                $location.replace();
+            }
         }
     ]);
 })();

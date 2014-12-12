@@ -13,7 +13,7 @@
     .value('apiUrl', 'http://dev.innovalangues.net/kinephone-api/web/index.php/kinephones/')
 
     .run([
-        '$rootScope', 
+        '$rootScope',
         '$routeParams',
         'LanguageService',
         'TableService',
@@ -23,8 +23,10 @@
                 // previous is the previous route
                 var langId = $routeParams.lang ? $routeParams.lang : 1;
                 var tableId = $routeParams.table ? $routeParams.table : 1;
+                    
                 LanguageService.setCurrentLanguageId(langId);
                 TableService.setCurrentTableId(tableId); 
+                
             });             
     }]);
 })();
