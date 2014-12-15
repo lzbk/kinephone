@@ -75,6 +75,13 @@
                 $scope.pass = '';
                 $scope.isAuthenticated = false;
                 HeaderService.setIsAuthenticated($scope.isAuthenticated);
+                
+                // redirect after logout ?
+                /*
+                var path = '/' + $scope.selectedLanguage.language_id + '/' + $scope.selectedTable.table_id + '/table';
+                $location.path(path);
+                $location.replace();
+                */
             };
             
             $scope.onLanguageChange = function () {

@@ -31,7 +31,8 @@
             };
             // handle hold event on an item
             $scope.handleAreaHoldEvent = function ($event) {
-                if (!HeaderService.getIsSilentWay()) {
+                console.log('pressed detected');
+                if (!HeaderService.getIsSilentWay()) {                    
                     showItemDetails($event);
                 } else {
                     playVowel($event);
