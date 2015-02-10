@@ -31,7 +31,10 @@
                         return tableParams;
                     }
                 }
-            });
+            })
+                    .otherwise({
+                        redirectTo: '/en_gb/1/table'
+                    });
         }
     ]);
 })();

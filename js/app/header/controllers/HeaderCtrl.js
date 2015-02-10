@@ -85,7 +85,13 @@
             };
             
             $scope.onLanguageChange = function () {
-                $scope.langId = $scope.selectedLanguage.language_id;
+                var languages = $scope.languages;
+                for (var i=0; i<languages.length; i++) {
+                    if (languages[i].language_code_iso === $scope.selectedLanguage) {
+                        $scope.langId = languages[i].language_id;
+                    }
+                }
+            //    $scope.langId = $scope.selectedLanguage.language_id;
                 LanguageService.setCurrentLanguageId($scope.langId);
                 // update corresponding table list && current table id
                 getTables(true);
@@ -98,7 +104,8 @@
             
             $scope.reloadData = function () {
                 var ctrl = $route.current.controller;
-                var path = '/' + $scope.selectedLanguage.language_id + '/' + $scope.selectedTable.table_id;
+            //    var path = '/' + $scope.selectedLanguage.language_id + '/' + $scope.selectedTable.table_id;
+                var path = '/' + $scope.selectedLanguage + '/' + $scope.selectedTable.table_id;
                 if(ctrl === 'TableCtrl'){
                     path +=  '/table';
                 }
