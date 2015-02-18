@@ -8,17 +8,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" data-ng-click="reloadData()" href="#/{{langId}}/{{tableId}}/table" data-tooltip="Accueil" data-tooltip-placement="bottom">Kinephones</a>
+            <a class="navbar-brand" data-ng-click="reloadData()" href="#/" data-tooltip="Accueil" data-tooltip-placement="bottom">Kinephones</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <!-- CHOOSE LANGUAGE & TABLE -->
             <form class="navbar-form navbar-left">
-            <!--    <div class="form-group">
-                    <label class="sr-only" for="Langue">Langue</label>                                    
-                    <select class="form-control" data-ng-model="selectedLanguage" data-ng-options="language as language.language_name for language in languages track by language.language_id" data-ng-change="onLanguageChange()">
-                    </select>
-                </div>-->
                 <div class="form-group">
                     <label class="sr-only" for="Langue">Langue</label>
                     <select class="form-control" data-ng-model="selectedLanguage" data-ng-options="language.language_code_iso as language.language_name for language in languages track by language.language_code_iso" data-ng-change="onLanguageChange()">
