@@ -22,7 +22,8 @@ body {
     box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     padding: 5px;
-    height: 100%;
+   
+    width: 90%;
 }
 
 img[usemap] {
@@ -70,4 +71,14 @@ audio{
 
 .tooltip-inner {
     white-space:nowrap;
+}
+
+.navbar-fixed-bottom{
+    min-height: 50px;
+    padding-top: 5px;
+}
+
+.footer-logo{
+    width: 40px;
+    height: 40px;
 }
